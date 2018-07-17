@@ -1,9 +1,5 @@
 colors = require('colors')
 
-
-fps = nil
-timedelta = nil
-
 grabbed = false
 rp = {x=50, y=50, w=25, h=25}
 bounds = nil
@@ -64,26 +60,16 @@ function love.mousemoved(x, y, dx, dy, istouch)
     end
 end
 
-function love.load()
-    print(love.graphics.getFont())
-end
+function love.load() end
 
-function love.update(dt)
-    fps = 1 / dt
-    timedelta = dt
-end
+function love.update(dt) end
 
 function love.draw()
     drawRect()
-    love.graphics.print(string.format('%i', fps), 2, 1)
+    love.graphics.print(string.format('fps: %i', love.timer.getFPS()), 2, 0)
 
-    love.graphics.print(string.format('%i', mouse.x), 2, 12)
-    love.graphics.print(string.format('%i', mouse.y), 2, 24)
+    love.graphics.print(string.format('mouse.x: %i', mouse.x), 2, 12)
+    love.graphics.print(string.format('mouse.y: %i', mouse.y), 2, 24)
 
-    love.graphics.print(string.format('%i', bounds[1]), 2, 36)
-    love.graphics.print(string.format('%i', bounds[2]), 2, 48)
-    love.graphics.print(string.format('%i', bounds[3]), 2, 60)
-    love.graphics.print(string.format('%i', bounds[4]), 2, 72)
-
-    love.graphics.print(string.format('%s', grabbed and 'true' or 'false'), 2, 84)
+    love.graphics.print(string.format('grabbed: %s', grabbed and 'true' or 'false'), 2, 36)
 end
