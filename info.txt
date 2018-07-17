@@ -1,0 +1,25 @@
+Classic 1010 blocks and their names (for now):
+
+x          one
+
+x x        two
+
+x x x      thr
+
+x x x x    fou
+
+x x x x x  fiv
+
+x x
+x x        ssm
+
+x x x
+x x x
+x x x      slg
+
+x x
+x          csm
+
+x
+x
+x x x      clg
