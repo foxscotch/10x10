@@ -60,7 +60,9 @@ function love.mousemoved(x, y, dx, dy, istouch)
     end
 end
 
-function love.load() end
+function love.load()
+    love.graphics.setBackgroundColor(colors.Dark.bg)
+end
 
 function love.update(dt) end
 
