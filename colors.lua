@@ -1,14 +1,14 @@
 local colors = {}
 
-function colors.convert_theme(theme)
+function colors.convertTheme(theme)
     local new_theme = {}
     for name, color in pairs(theme) do
-        new_theme[name] = colors.to_floats(color)
+        new_theme[name] = colors.toFloats(color)
     end
     return new_theme
 end
 
-function colors.to_floats(color)
+function colors.toFloats(color)
     local red = color[1] / 255
     local green = color[2] / 255
     local blue = color[3] / 255
@@ -20,7 +20,7 @@ function colors.to_floats(color)
 end
 
 -- Theme interface
-colors.Theme = colors.convert_theme({
+colors.Theme = colors.convertTheme({
     -- Main UI colors
     bg={0, 0, 0},
     stars={0, 0, 0},
@@ -41,7 +41,7 @@ colors.Theme = colors.convert_theme({
     clg={0, 0, 0}   -- large corner
 })
 
-colors.Light = colors.convert_theme({
+colors.Light = colors.convertTheme({
     bg={255, 255, 255},
     stars={238, 149, 74},
     score={92, 189, 227},
@@ -60,7 +60,7 @@ colors.Light = colors.convert_theme({
     clg={92, 189, 228}
 })
 
-colors.Dark = colors.convert_theme({
+colors.Dark = colors.convertTheme({
     bg={28, 28, 28},
     stars={238, 149, 74},  -- same as Light
     score={92, 113, 227},
@@ -81,7 +81,7 @@ colors.Dark = colors.convert_theme({
     clg={92, 189, 228}
 })
 
-colors.Soft = colors.convert_theme({
+colors.Soft = colors.convertTheme({
     bg={221, 224, 203},
     stars={191, 150, 115},
     score={147, 156, 169},
@@ -99,6 +99,6 @@ colors.Soft = colors.convert_theme({
     clg={102, 123, 178},
 })
 
-colors.cool_pink = colors.to_floats({255, 0, 85})
+colors.cool_pink = colors.toFloats({255, 0, 85})
 
 return colors

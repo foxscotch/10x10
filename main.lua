@@ -1,34 +1,8 @@
+vector = require('ext.hump.vector')
+
 colors = require('colors')
+Block = require('blocks')
 
-grabbed = false
-rp = {x=50, y=50, w=25, h=25}
-bounds = nil
-mouse = {x=0, y=0}
-
-joystick = 0
-js_val = 0
-
-function setBounds()
-    local xmin = rp.x
-    local xmax = rp.x + rp.w - 1
-    local ymin = rp.y
-    local ymax = rp.y + rp.h - 1
-    bounds = {xmin, xmax, ymin, ymax}
-end
-setBounds()
-
-function color(r, g, b)
-    local red = r / 255
-    local green = g / 255
-    local blue = b / 255
-    return {red, green, blue}
-end
-
-function drawRect()
-    love.graphics.setColor(colors.Dark.two)
-    love.graphics.rectangle('fill', rp.x, rp.y, rp.h, rp.w, 5, 5)
-    love.graphics.setColor(color(255, 255, 255))
-end
 
 function withinRect(mx, my)
     setBounds()
@@ -40,38 +14,37 @@ function withinRect(mx, my)
     end
 end
 
+function resetColor()
+    love.graphics.setColor(colors.toFloats({255, 255, 255}))
+end
+
 function love.mousepressed(x, y, button, istouch)
-    if withinRect(x, y) then
-        grabbed = true
-    end
+    block:mousepressed(x, y, button, istouch)
 end
 
 function love.mousereleased(x, y, button, istouch)
-    grabbed = false
+    block:mousereleased(x, y, button, istouch)
 end
 
 function love.mousemoved(x, y, dx, dy, istouch)
-    mouse.x = x
-    mouse.y = y
-
-    if grabbed then
-        rp.x = rp.x + dx
-        rp.y = rp.y + dy
-    end
+    block:mousemoved(x, y, istouch)
 end
 
 function love.load()
     love.graphics.setBackgroundColor(colors.Dark.bg)
+    block = Block(vector.new(100, 100), colors.Dark.one)
 end
 
-function love.update(dt) end
+function love.update(dt)
+    block:update(dt)
+end
 
 function love.draw()
-    drawRect()
+    block:draw()
+
     love.graphics.print(string.format('fps: %i', love.timer.getFPS()), 2, 0)
 
-    love.graphics.print(string.format('mouse.x: %i', mouse.x), 2, 12)
-    love.graphics.print(string.format('mouse.y: %i', mouse.y), 2, 24)
-
-    love.graphics.print(string.format('grabbed: %s', grabbed and 'true' or 'false'), 2, 36)
+    love.graphics.print(string.format('mouse.x: %i', love.mouse.getX()), 2, 12)
+    love.graphics.print(string.format('mouse.y: %i', love.mouse.getY()), 2, 24)
+    love.graphics.print(string.format('mouse.down: %s', love.mouse.isDown(1) and 'true' or 'false'), 2, 36)
 end
