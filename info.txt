@@ -39,3 +39,7 @@ x          csm, 2 (*4 rotations)
 x
 x
 x x x      clg, 1 (*4 rotations)
+
+
+I got the score function and weight information came from this page:
+http://blog.coelho.net/games/2016/07/28/1010-game.html
