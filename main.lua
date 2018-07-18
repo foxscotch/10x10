@@ -26,7 +26,7 @@ end
 
 function drawRect()
     love.graphics.setColor(colors.Dark.two)
-    love.graphics.rectangle('fill', rp.x, rp.y, rp.h, rp.w, 2, 2)
+    love.graphics.rectangle('fill', rp.x, rp.y, rp.h, rp.w, 5, 5)
     love.graphics.setColor(color(255, 255, 255))
 end
 
