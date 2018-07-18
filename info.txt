@@ -1,25 +1,41 @@
-Classic 1010 blocks and their names (for now):
+Definitions:
 
-x          one
+Grid = the 10x10 game board that the game is played on
+Piece = the shaped collections of blocks placed on the grid
+Block = the individual squares that make up pieces
 
-x x        two
 
-x x x      thr
+Rules:
 
-x x x x    fou
+You are given three random pieces to choose from to place on the grid. When all three are used, three more random pieces are given, and so on.
+When a full row or column on the grid is filled with blocks, that row or column is cleared.
+Scoring:
+    Piece placed: 1 point per block
+    Rows/columns cleared: 5 * cleared * (cleared + 1)
 
-x x x x x  fiv
+
+Classic 1010 pieces and their names and weights per rotation:
+
+x          one, 2
+
+x x        two, 3 (*2 rotations)
+
+x x x      thr, 3 (*2 rotations)
+
+x x x x    fou, 2 (*2 rotations)
+
+x x x x x  fiv, 2 (*2 rotations)
 
 x x
-x x        ssm
+x x        ssm, 6
 
 x x x
 x x x
-x x x      slg
+x x x      slg, 2
 
 x x
-x          csm
+x          csm, 2 (*4 rotations)
 
 x
 x
-x x x      clg
+x x x      clg, 1 (*4 rotations)
