@@ -43,3 +43,20 @@ x x x      clg, 1 (*4 rotations)
 
 I got the score function and weight information came from this page:
 http://blog.coelho.net/games/2016/07/28/1010-game.html
+
+
+Desired non-classic features (to come after classic gameplay is implemented):
+
+Custom blocks and their weights and colors
+Custom grid sizes
+Custom color themes
+Sandbox mode (all blocks are available and can be placed at any time)
+Arcade mode
+    Larger default grid? 15x15 maybe?
+    Lives? Maybe when no blocks can be placed, some blocks on the grid are deleted and a set of pieces with at least one
+      guaranteed-placeable piece is given, along with the removal of a life.
+    Power-ups? Earning power-ups could function like earning stars from the real game.
+        Clear - clears one block
+        RowClear - clears one row
+        ColumnClear - clears one column
+        Could use some more interesting options.
