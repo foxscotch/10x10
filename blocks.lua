@@ -22,6 +22,7 @@ function Block:constructor(pos, color)
     self.starting_pos = pos  -- read-only hump.vector
     self.color = color or Game.theme.def  -- LÖVE-compatible rgb(a) color table
     self.grabbed = false
+    self.onTop = false
 end
 
 function Block:mousepressed(x, y, button, istouch)
@@ -29,12 +30,15 @@ function Block:mousepressed(x, y, button, istouch)
         xOffset = self.pos.x - x
         yOffset = self.pos.y - y
         self.grabbed = vector.new(xOffset, yOffset)
+        self.onTop = true
     end
 end
 
 function Block:mousereleased(x, y, button, istouch)
     self.grabbed = false
-    Game.timer:tween(.25, self.pos, self.starting_pos, 'out-quad')
+    Game.timer:tween(.25, self.pos, self.starting_pos, 'out-quad', function()
+        self.onTop = false
+    end)
 end
 
 function Block:mousemoved(x, y, istouch)
@@ -46,7 +50,7 @@ function Block:mousemoved(x, y, istouch)
 end
 
 function Block:draw()
-    deep.queue(self.grabbed and 2 or 1, function ()
+    deep.queue(self.onTop and 2 or 1, function ()
         love.graphics.setColor(self.color)
         love.graphics.rectangle('fill',
                                 self.pos.x, self.pos.y,
