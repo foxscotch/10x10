@@ -1,4 +1,6 @@
-Base = require('ext.knife.base')
+local Base = require('ext.knife.base')
+local Timer = require('ext.hump.timer')
+local vector = require('ext.hump.vector')
 
 
 -- Size of blocks in the selection panel (TBD)
@@ -15,6 +17,7 @@ local Block = Base:extend()
 
 function Block:constructor(pos, color)
     self.pos = pos  -- hump.vector
+    self.starting_pos = pos  -- read-only hump.vector
     self.color = color  -- LÖVE-compatible rgb(a) color table
     self.size = BLOCK_PLACED_SIZE  -- Default to the full size
     self.grabbed = false
@@ -32,6 +35,7 @@ end
 
 function Block:mousereleased(x, y, button, istouch)
     self.grabbed = false
+    Timer.tween(.5, self.pos, self.starting_pos, 'out-quad')
 end
 
 function Block:mousemoved(x, y, istouch)
