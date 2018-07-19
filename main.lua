@@ -4,14 +4,15 @@ colors = require('colors')
 Block = require('blocks')
 
 
-function withinRect(mx, my)
-    setBounds()
+local debugPosition = 2
 
-    if mx >= bounds[1] and mx <= bounds[2] and my >= bounds[3] and my <= bounds[4] then
-        return true
-    else
-        return false
-    end
+function debugDisplay(str)
+    love.graphics.print(str, 2, debugPosition)
+    debugPosition = debugPosition + 15
+end
+
+function resetDebugDisplay()
+    debugPosition = 2
 end
 
 function resetColor()
@@ -40,11 +41,12 @@ function love.update(dt)
 end
 
 function love.draw()
+    debugDisplay(string.format('fps: %i', love.timer.getFPS()))
+    debugDisplay(string.format('mouse.x: %i', love.mouse.getX()))
+    debugDisplay(string.format('mouse.y: %i', love.mouse.getY()))
+    debugDisplay(string.format('mouse.down: %s', love.mouse.isDown(1) and 'true' or 'false'))
+
     block:draw()
 
-    love.graphics.print(string.format('fps: %i', love.timer.getFPS()), 2, 0)
-
-    love.graphics.print(string.format('mouse.x: %i', love.mouse.getX()), 2, 12)
-    love.graphics.print(string.format('mouse.y: %i', love.mouse.getY()), 2, 24)
-    love.graphics.print(string.format('mouse.down: %s', love.mouse.isDown(1) and 'true' or 'false'), 2, 36)
+    resetDebugDisplay()
 end

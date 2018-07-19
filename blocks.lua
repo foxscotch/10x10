@@ -43,7 +43,7 @@ function Block:mousemoved(x, y, istouch)
 end
 
 function Block:draw()
-    love.graphics.print(string.format('within: %s', self:pointWithin() and 'true' or 'false'), 2, 48)
+    debugDisplay(string.format('within: %s', self:pointWithin() and 'true' or 'false'))
 
     love.graphics.setColor(self.color)
     love.graphics.rectangle('fill',
