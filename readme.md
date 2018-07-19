@@ -9,10 +9,9 @@ just specify the date that I downloaded the code.
 
  - [hump][hump] (0.4-2)
  - [knife][knife] (pulled on July 17, 2018)
-
- Hump and Knife generally provide similar facilities, so in any instances where
- they share a feature, I tend to choose Hump's implementation.
+ - [deep][deep] (2.0.3)
 
 [1010]: http://gram.gs/game-detail-1010.html "1010!"
 [hump]: https://github.com/vrld/hump "vrld/hump"
 [knife]: https://github.com/airstruck/knife "airstruck/knife"
+[deep]: https://github.com/Nikaoto/deep "Nikaoto/deep"
