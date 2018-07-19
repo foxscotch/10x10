@@ -28,8 +28,8 @@ colors.Theme = colors.convertTheme({
     high={0, 0, 0},
     pause={0, 0, 0},
 
-    -- Block colors, the first of which is the default
-    def={0, 0, 0},
+    -- Block colors
+    def={0, 0, 0},  -- default / empty block
     one={0, 0, 0},  -- 1x1
     two={0, 0, 0},  -- 1x2
     thr={0, 0, 0},  -- 1x3
@@ -69,7 +69,7 @@ colors.Dark = colors.convertTheme({
 
     -- All block colors are the same as Light. I need to figure out a way to
     -- inherit instead of just sticking the same colors in again.
-    def={255, 255, 255},
+    def={54, 54, 54},
     one={123, 135, 193},
     two={255, 198, 63},
     thr={238, 148, 73},

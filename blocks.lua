@@ -1,3 +1,4 @@
+local deep = require('ext.deep')
 local Timer = require('ext.hump.timer')
 local vector = require('ext.hump.vector')
 
@@ -19,11 +20,9 @@ local Block = Node:extend()
 function Block:constructor(pos, color)
     Node.constructor(self, pos, BLOCK_PLACED_SIZE)
     self.starting_pos = pos  -- read-only hump.vector
-    self.color = color  -- LÖVE-compatible rgb(a) color table
+    self.color = color or Game.theme.def  -- LÖVE-compatible rgb(a) color table
     self.grabbed = false
 end
-
-function Block:update(dt) end
 
 function Block:mousepressed(x, y, button, istouch)
     if button == 1 and self:pointWithin() then
@@ -47,16 +46,13 @@ function Block:mousemoved(x, y, istouch)
 end
 
 function Block:draw()
-    if DEBUG then
-        Game.debugDisplay(string.format('within: %s', self:pointWithin() and 'true' or 'false'))
-    end
-
-    love.graphics.setColor(self.color)
-    love.graphics.rectangle('fill',
-                            self.pos.x, self.pos.y,
-                            self.size.w, self.size.h,
-                            self.size.r, self.size.r)
-    Game.resetColor()
+    deep.queue(self.grabbed and 2 or 1, function ()
+        love.graphics.setColor(self.color)
+        love.graphics.rectangle('fill',
+                                self.pos.x, self.pos.y,
+                                self.size.w, self.size.h,
+                                self.size.r, self.size.r)
+    end)
 end
 
 

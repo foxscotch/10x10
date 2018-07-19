@@ -32,4 +32,23 @@ function Node:pointWithin(x, y)
 end
 
 
+-- Define stubs for relevant callbacks
+
+function Node:update() end
+function Node:draw() end
+function Node:quit() end
+function Node:resize() end
+function Node:focus() end
+function Node:mousefocus() end
+function Node:wheelmoved() end
+function Node:mousepressed() end
+function Node:mousereleased() end
+function Node:mousemoved() end
+function Node:touchmoved() end
+function Node:touchpressed() end
+function Node:touchreleased() end
+function Node:keypressed() end
+function Node:keyreleased() end
+
+
 return Node
