@@ -16,8 +16,9 @@ Game = {}
 -- Debug property; controls whether debugDisplay() calls are printed.
 Game.DEBUG = false
 
--- Start with empty value, just to indicate that this property actually exists
-Game.debugPosition = nil
+
+-- Game Variables --
+
 Game.nodes = {}
 Game.startTime = love.timer.getTime()
 Game.theme = colors.Dark
@@ -26,7 +27,7 @@ Game.timer = Timer.new()
 
 function Game.init()
     love.graphics.setBackgroundColor(Game.theme.bg)
-    g = Grid(vector.new(100, 100))
+    g = Grid(vector.new(100, 100), {w=10, h=10})
     gw, gh = g:getFullSize()
     ww, wh = love.window.getMode()
     g:setPos(vector.new(ww/2-gw/2, wh/2-gh/2))
@@ -40,7 +41,6 @@ function Game.update(dt)
         node:update(dt)
     end
     Game.timer:update(dt)
-    Game.debugPosition = 2
 end
 
 function Game.draw()
@@ -52,6 +52,7 @@ function Game.draw()
     end
 
     deep.execute()
+    Game.printDebug()
 end
 
 function Game.mousepressed(x, y, button, istouch)
@@ -88,11 +89,21 @@ function Game.removeNode(node)
     end
 end
 
+Game.debugStrings = {}
+
 function Game.debugDisplay(str)
+    table.insert(Game.debugStrings, str)
+end
+
+function Game.printDebug()
     if Game.DEBUG then
-        love.graphics.setColor(colors.toFloats({255, 255, 255}))
-        love.graphics.print(str, 2, Game.debugPosition)
-        Game.debugPosition = Game.debugPosition + 15
+        position = 2
+        for i,str in ipairs(Game.debugStrings) do
+            love.graphics.setColor(colors.toFloats({255, 255, 255}))
+            love.graphics.print(str, 2, position)
+            position = position + 15
+        end
+        Game.debugStrings = {}
     end
 end
 

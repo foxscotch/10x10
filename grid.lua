@@ -30,6 +30,7 @@ end
 
 function Grid:setPos(vect)
     Node.setPos(self, vect)
+    print(string.format('moved to %i,%i', vect.x, vect.y))
     for i = 1, self.size.w do
         for j = 1, self.size.h do
             local x = self:getOffset(i, 'x')
