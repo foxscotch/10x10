@@ -1,16 +1,21 @@
 local Base = require('ext.knife.base')
+local vector = require('ext.hump.vector')
 
 
 local Node = Base:extend()
 
 function Node:constructor(pos, size)
     Game.addNode(self)
-    self.pos = pos  -- hump.vector
+    self.pos = pos or vector.new(0, 0)  -- hump.vector
     self.size = size or {w=0, h=0, r=0}
 end
 
 function Node:delete()
     Game.removeNode(self)
+end
+
+function Node:setPos(x, y)
+    self.pos = vector.new(x, y)
 end
 
 function Node:getBounds()

@@ -16,9 +16,17 @@ Block.GRABBED_SIZE = 29
 -- Size of blocks placed on the grid
 Block.PLACED_SIZE  = 32
 
+-- Block sizes
+Block.SIZES = {
+    SELECT=20,
+    GRABBED=29,
+    PLACED=32
+}
+Block.DEFAULT_SIZE = Block.SIZES.PLACED
+
 function Block:constructor(pos, color, blockSize)
     Node.constructor(self, pos)
-    blockSize = blockSize or Block.PLACED_SIZE
+    blockSize = blockSize or Block.DEFAULT_SIZE
     self.size = {w=blockSize, h=blockSize}
     self.radius = blockSize/5
     self.starting_pos = pos  -- read-only hump.vector

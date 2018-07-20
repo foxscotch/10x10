@@ -1,5 +1,6 @@
 local Block = require('blocks')
 local colors = require('colors')
+local Grid = require('grid')
 
 local deep = require('ext.deep')
 local Timer = require('ext.hump.timer')
@@ -25,29 +26,9 @@ Game.timer = Timer.new()
 
 function Game.init()
     love.graphics.setBackgroundColor(Game.theme.bg)
-
-    Block(vector.new(100, 100), Game.theme.one)
-    Block(vector.new(150, 100), Game.theme.def)
-    Block(vector.new(200, 100), Game.theme.def)
-    Block(vector.new(250, 100), Game.theme.def)
-
-    Block(vector.new(100, 150), Game.theme.two)
-    Block(vector.new(150, 150), Game.theme.thr, Block.PLACED_SIZE)
-    Block(vector.new(200, 150), Game.theme.fou, Block.GRABBED_SIZE)
-    Block(vector.new(250, 150), Game.theme.fiv, Block.SELECT_SIZE)
-
-    to_delete1 = Block(vector.new(100, 200), Game.theme.ssm)
-    to_delete2 = Block(vector.new(150, 200), Game.theme.slg)
-    to_delete3 = Block(vector.new(200, 200), Game.theme.csm)
-    to_delete4 = Block(vector.new(250, 200), Game.theme.clg)
-
-    -- Delete the last row after five seconds
-    Game.timer:after(5, function ()
-        to_delete1:delete()
-        to_delete2:delete()
-        to_delete3:delete()
-        to_delete4:delete()
-    end)
+    g = Grid(vector.new(100, 100))
+    gw, gh = g:getFullSize()
+    g:setPos(gw, gh)
 end
 
 
