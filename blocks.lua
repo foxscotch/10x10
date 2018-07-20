@@ -7,10 +7,10 @@ local Node = require('node')
 
 local Block = Node:extend()
 
--- Size of blocks in the selection panel (TBD)
+-- Size of blocks in the selection panel
 Block.SELECT_SIZE  = 20
 
--- Size of blocks currently grabbed by the player (TBD)
+-- Size of blocks currently grabbed by the player
 Block.GRABBED_SIZE = 29
 
 -- Size of blocks placed on the grid
