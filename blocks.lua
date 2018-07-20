@@ -16,11 +16,11 @@ Block.GRABBED_SIZE = 29
 -- Size of blocks placed on the grid
 Block.PLACED_SIZE  = 32
 
-function Block:constructor(pos, color, size)
+function Block:constructor(pos, color, blockSize)
     Node.constructor(self, pos)
-    local size = size or Block.PLACED_SIZE
-    self.size = {w=size, h=size}
-    self.radius = size/5
+    blockSize = blockSize or Block.PLACED_SIZE
+    self.size = {w=blockSize, h=blockSize}
+    self.radius = blockSize/5
     self.starting_pos = pos  -- read-only hump.vector
     self.color = color or Game.theme.def  -- LÖVE-compatible rgb(a) color table
     self.grabbed = false
