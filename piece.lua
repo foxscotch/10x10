@@ -6,11 +6,14 @@ local Node = require('node')
 
 local Piece = Node:extend()
 
-function Piece:constructor(pos)
+function Piece:constructor(pos, pieceDefinition)
     Node.constructor(self, pos)
     self.starting_pos = pos  -- read-only hump.vector
     self.grabbed = false
     self.onTop = false
+
+    self.blocks = {}
+
 end
 
 function Piece:mousepressed(x, y, button, istouch)
