@@ -5,20 +5,22 @@ local vector = require('ext.hump.vector')
 local Node = require('node')
 
 
--- Size of blocks in the selection panel (TBD)
-local BLOCK_SELECT_SIZE  = {w=25, h=25, r=5}
-
--- Size of blocks currently grabbed by the player (TBD)
-local BLOCK_GRABBED_SIZE = {w=25, h=25, r=5}
-
--- Size of blocks placed on the grid
-local BLOCK_PLACED_SIZE  = {w=25, h=25, r=5}
-
-
 local Block = Node:extend()
 
-function Block:constructor(pos, color)
-    Node.constructor(self, pos, BLOCK_PLACED_SIZE)
+-- Size of blocks in the selection panel (TBD)
+Block.SELECT_SIZE  = 20
+
+-- Size of blocks currently grabbed by the player (TBD)
+Block.GRABBED_SIZE = 29
+
+-- Size of blocks placed on the grid
+Block.PLACED_SIZE  = 32
+
+function Block:constructor(pos, color, size)
+    Node.constructor(self, pos)
+    local size = size or Block.PLACED_SIZE
+    self.size = {w=size, h=size}
+    self.radius = size/5
     self.starting_pos = pos  -- read-only hump.vector
     self.color = color or Game.theme.def  -- LÖVE-compatible rgb(a) color table
     self.grabbed = false
@@ -55,7 +57,7 @@ function Block:draw()
         love.graphics.rectangle('fill',
                                 self.pos.x, self.pos.y,
                                 self.size.w, self.size.h,
-                                self.size.r, self.size.r)
+                                self.radius, self.radius)
     end)
 end
 

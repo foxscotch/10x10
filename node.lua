@@ -6,7 +6,7 @@ local Node = Base:extend()
 function Node:constructor(pos, size)
     Game.addNode(self)
     self.pos = pos  -- hump.vector
-    self.size = size or {w=0, h=0}
+    self.size = size or {w=0, h=0, r=0}
 end
 
 function Node:delete()

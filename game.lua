@@ -27,11 +27,14 @@ function Game.init()
     love.graphics.setBackgroundColor(Game.theme.bg)
 
     Block(vector.new(100, 100), Game.theme.one)
+    Block(vector.new(150, 100), Game.theme.def)
+    Block(vector.new(200, 100), Game.theme.def)
+    Block(vector.new(250, 100), Game.theme.def)
 
     Block(vector.new(100, 150), Game.theme.two)
-    Block(vector.new(150, 150), Game.theme.thr)
-    Block(vector.new(200, 150), Game.theme.fou)
-    Block(vector.new(250, 150), Game.theme.fiv)
+    Block(vector.new(150, 150), Game.theme.thr, Block.PLACED_SIZE)
+    Block(vector.new(200, 150), Game.theme.fou, Block.GRABBED_SIZE)
+    Block(vector.new(250, 150), Game.theme.fiv, Block.SELECT_SIZE)
 
     to_delete1 = Block(vector.new(100, 200), Game.theme.ssm)
     to_delete2 = Block(vector.new(150, 200), Game.theme.slg)

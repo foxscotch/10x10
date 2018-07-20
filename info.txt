@@ -58,6 +58,8 @@ Grabbed blocks:
     58px square
     10px between blocks (more important is that their centers are as far apart from each other as full block centers)
 
+For the game, I'm gonna need to half the sizes. 64x64 is just way too big. 32 is better.
+
 
 Desired non-classic features (to come after classic gameplay is implemented):
 
