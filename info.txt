@@ -45,6 +45,20 @@ I got the score function and weight information came from this page:
 http://blog.coelho.net/games/2016/07/28/1010-game.html
 
 
+Sizes:
+
+Full blocks:
+    64px square
+    4px between blocks
+    The entire 10x10 grid is therefore 674x674px
+Selection area blocks:
+    40px square
+    2px between blocks (does not necessarily need to be exact? proportions will be more important)
+Grabbed blocks:
+    58px square
+    10px between blocks (more important is that their centers are as far apart from each other as full block centers)
+
+
 Desired non-classic features (to come after classic gameplay is implemented):
 
 Custom blocks and their weights and colors
