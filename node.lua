@@ -14,8 +14,8 @@ function Node:delete()
     Game.removeNode(self)
 end
 
-function Node:setPos(x, y)
-    self.pos = vector.new(x, y)
+function Node:setPos(vect)
+    self.pos = vector.new(vect.x, vect.y)
 end
 
 function Node:getBounds()

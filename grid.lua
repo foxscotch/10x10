@@ -10,7 +10,7 @@ local Grid = Node:extend()
 Grid.DEFAULT_SIZE = {w=10, h=10}
 
 -- Space, in pixels, between blocks
-Grid.SPACING = 2
+Grid.SPACING = Block.DEFAULT_SIZE * 0.06
 
 function Grid:constructor(pos, size)
     Node.constructor(self, pos)
@@ -20,12 +20,27 @@ function Grid:constructor(pos, size)
     for i = 1, self.size.w do
         table.insert(self.blocks, {})
         for j = 1, self.size.h do
-            local x = (Block.DEFAULT_SIZE + Grid.SPACING) * (i - 1) + self.pos.x
-            local y = (Block.DEFAULT_SIZE + Grid.SPACING) * (j - 1) + self.pos.y
+            local x = self:getOffset(i, 'y')
+            local y = self:getOffset(j, 'y')
             local block = Block(vector.new(x, y))
             table.insert(self.blocks[i], block)
         end
     end
+end
+
+function Grid:setPos(vect)
+    Node.setPos(self, vect)
+    for i = 1, self.size.w do
+        for j = 1, self.size.h do
+            local x = self:getOffset(i, 'x')
+            local y = self:getOffset(j, 'y')
+            self.blocks[i][j]:setPos(vector.new(x, y))
+        end
+    end
+end
+
+function Grid:getOffset(i, dimension)
+    return (Block.DEFAULT_SIZE + Grid.SPACING) * (i - 1) + self.pos[dimension]
 end
 
 function Grid:getFullSize()

@@ -28,7 +28,8 @@ function Game.init()
     love.graphics.setBackgroundColor(Game.theme.bg)
     g = Grid(vector.new(100, 100))
     gw, gh = g:getFullSize()
-    g:setPos(gw, gh)
+    ww, wh = love.window.getMode()
+    g:setPos(vector.new(ww/2-gw/2, wh/2-gh/2))
 end
 
 
