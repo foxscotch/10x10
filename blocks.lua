@@ -20,12 +20,12 @@ function Block:constructor(pos, color, blockSize)
     blockSize = blockSize or Block.DEFAULT_SIZE
     self.size = {w=blockSize, h=blockSize}
     self.radius = blockSize/5
-    self.color = color or Game.theme.def  -- LÖVE-compatible rgb(a) color table
+    self.color = color or 'def'  -- string corresponding to theme color name
 end
 
 function Block:draw()
     deep.queue(2, function ()
-        love.graphics.setColor(self.color)
+        love.graphics.setColor(Game.theme[self.color])
         love.graphics.rectangle('fill',
                                 self.pos.x, self.pos.y,
                                 self.size.w, self.size.h,

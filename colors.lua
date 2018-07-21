@@ -48,7 +48,7 @@ colors.Light = colors.convertTheme({
     high={153, 220, 91},
     pause={245, 201, 163},
 
-    def={255, 255, 255},
+    def={227, 227, 227},
     one={123, 135, 193},
     two={255, 198, 63},
     thr={238, 148, 73},
@@ -88,6 +88,7 @@ colors.Soft = colors.convertTheme({
     high={190, 187, 201},
     pause={254, 254, 254},  -- same as Dark
 
+    def={201, 205, 193},
     one={117, 101, 179},
     two={165, 115, 184},
     thr={201, 135, 109},
