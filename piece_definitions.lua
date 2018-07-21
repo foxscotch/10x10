@@ -12,28 +12,49 @@ pieces.one = {
     {0, 0}
 }
 
---[[
-    x x        two, 3 (*2 rotations)
+pieces.two = {
+    weight=3,
+    {0, 0},
+    {1, 0}
+}  -- +1 rotation
 
-    x x x      thr, 3 (*2 rotations)
+pieces.thr = {
+    weight=3,
+    {0, 0},
+    {1, 0},
+    {2, 0}
+}  -- +1 rotation
 
-    x x x x    fou, 2 (*2 rotations)
+pieces.fou = {
+    weight=2,
+    {0, 0},
+    {1, 0},
+    {2, 0},
+    {3, 0}
+}  -- +1 rotation
 
-    x x x x x  fiv, 2 (*2 rotations)
+pieces.fiv = {
+    weight=2,
+    {0, 0},
+    {1, 0},
+    {2, 0},
+    {3, 0},
+    {4, 0}
+}  -- +1 rotation
 
-    x x
-    x x        ssm, 6
+x x
+x x        ssm, 6
 
-    x x x
-    x x x
-    x x x      slg, 2
+x x x
+x x x
+x x x      slg, 2
 
-    x x
-    x          csm, 2 (*4 rotations)
+x x
+x          csm, 2 (*4 rotations)
 
-    x
-    x
-    x x x      clg, 1 (*4 rotations)
-]]
+x
+x
+x x x      clg, 1 (*4 rotations)
+
 
 return pieces
