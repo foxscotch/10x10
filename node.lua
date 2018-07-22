@@ -77,7 +77,8 @@ function Node:keypressed() end
 function Node:keyreleased() end
 
 
--- The following functions should not be overwritten in subclasses
+-- The following functions should not be overwritten in subclasses. They call
+-- the event handlers for themselves and all children.
 
 function eventAll(event)
     return function (self, ...)
