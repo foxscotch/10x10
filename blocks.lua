@@ -15,11 +15,12 @@ Block.SIZES = {
 }
 Block.DEFAULT_SIZE = Block.SIZES.PLACED
 
-function Block:constructor(pos, color, blockSize)
-    Node.constructor(self, pos)
+Block.RADIUS_DIVISOR = 5
+
+function Block:constructor(parent, pos, color, blockSize)
+    Node.constructor(self, parent, pos)
     blockSize = blockSize or Block.DEFAULT_SIZE
     self.size = {w=blockSize, h=blockSize}
-    self.radius = blockSize/5
     self.color = color or 'def'  -- string corresponding to theme color name
 end
 
@@ -29,7 +30,7 @@ function Block:draw()
         love.graphics.rectangle('fill',
                                 self.pos.x, self.pos.y,
                                 self.size.w, self.size.h,
-                                self.radius, self.radius)
+                                self.size.w / Block.RADIUS_DIVISOR)
     end)
 end
 

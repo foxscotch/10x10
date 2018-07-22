@@ -6,8 +6,8 @@ local Node = require('node')
 
 local Piece = Node:extend()
 
-function Piece:constructor(pos, pieceDefinition)
-    Node.constructor(self, pos)
+function Piece:constructor(parent, pos, pieceDefinition)
+    Node.constructor(self, parent, pos)
     self.starting_pos = pos  -- read-only hump.vector
     self.grabbed = false
     self.onTop = false
