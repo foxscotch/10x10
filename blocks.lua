@@ -29,8 +29,8 @@ function Block:constructor(parent, pos, color, sizeFactor)
     self.color = color or 'def'  -- string corresponding to theme color name
 end
 
-function Block:draw()
-    deep.queue(2, function ()
+function Block:draw(onTop)
+    deep.queue(onTop and 1 or 2, function ()
         love.graphics.setColor(Game.theme[self.color])
         love.graphics.rectangle('fill',
                                 self.pos.x, self.pos.y,
