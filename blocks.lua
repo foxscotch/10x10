@@ -7,20 +7,25 @@ local Node = require('node')
 
 local Block = Node:extend()
 
--- Block sizes
-Block.SIZES = {
-    SELECT=20,
-    GRABBED=29,
-    PLACED=32
-}
-Block.DEFAULT_SIZE = Block.SIZES.PLACED
 
+-- Base size of blocks,
+Block.BASE_SIZE = 32
+
+-- Block sizes
+Block.SIZE_FACTORS = {
+    SELECT  = 0.62,
+    GRABBED = 0.90,
+    PLACED  = 1.00
+}
+
+-- Divisor used to find corner radius.
 Block.RADIUS_DIVISOR = 5
 
-function Block:constructor(parent, pos, color, blockSize)
+
+function Block:constructor(parent, pos, color, sizeFactor)
     Node.constructor(self, parent, pos)
-    blockSize = blockSize or Block.DEFAULT_SIZE
-    self.size = {w=blockSize, h=blockSize}
+    local sF = sizeFactor or Block.SIZE_FACTORS.PLACED
+    self.size = {w=Block.BASE_SIZE*sF, h=Block.BASE_SIZE*sF}
     self.color = color or 'def'  -- string corresponding to theme color name
 end
 

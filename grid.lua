@@ -6,11 +6,13 @@ local Block = require('blocks')
 
 local Grid = Node:extend()
 
+
 -- The number of blocks it contains, not size in pixels
 Grid.DEFAULT_SIZE = {w=10, h=10}
 
 -- Space, in pixels, between blocks
-Grid.SPACING = Block.DEFAULT_SIZE * 0.06
+Grid.SPACING = Block.BASE_SIZE * 0.06
+
 
 function Grid:constructor(parent, pos, size)
     Node.constructor(self, parent, pos)
@@ -40,7 +42,7 @@ function Grid:setPos(vect)
 end
 
 function Grid:getOffset(i, dimension)
-    return (Block.DEFAULT_SIZE + Grid.SPACING) * (i - 1) + self.pos[dimension]
+    return (Block.BASE_SIZE + Grid.SPACING) * (i - 1) + self.pos[dimension]
 end
 
 function Grid:getFullSize()
