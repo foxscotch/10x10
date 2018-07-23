@@ -2,18 +2,25 @@ local Timer = require('ext.hump.timer')
 local vector = require('ext.hump.vector')
 
 local Node = require('node')
+local Block = require('blocks')
 
 
 local Piece = Node:extend()
 
-function Piece:constructor(parent, pos, pieceDefinition)
+function Piece:constructor(parent, pos, pcDef)
     Node.constructor(self, parent, pos)
-    self.starting_pos = pos  -- read-only hump.vector
+    self.starting_pos = pos:clone()  -- read-only hump.vector
     self.grabbed = false
     self.onTop = false
 
     self.blocks = {}
-
+    for i,offsets in ipairs(pcDef) do
+        bl = {}
+        bl.block = Block(self, pos:clone(), pcDef.color, Block.STATES.SELECT)
+        bl.xOffset = offsets[1]
+        bl.yOffset = offsets[2]
+        table.insert(self.blocks, bl)
+    end
 end
 
 function Piece:mousepressed(x, y, button, istouch)
