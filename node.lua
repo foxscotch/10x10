@@ -40,6 +40,12 @@ function Node:setPos(vect)
     self.pos = vector.new(vect.x, vect.y)
 end
 
+function Node:getCenter()
+    local x = self.pos.x + self.size.w/2
+    local y = self.pos.y + self.size.h/2
+    return vector.new(x, y)
+end
+
 function Node:getBounds()
     local xmin = self.pos.x
     local xmax = self.pos.x + self.size.w - 1
