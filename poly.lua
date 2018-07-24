@@ -5,9 +5,9 @@ local Node = require('node')
 local Block = require('blocks')
 
 
-local Piece = Node:extend()
+local Poly = Node:extend()
 
-function Piece:constructor(parent, pos, pcDef)
+function Poly:constructor(parent, pos, pcDef)
     Node.constructor(self, parent, pos)
     self.starting_pos = pos:clone()  -- read-only hump.vector
     self.grabbed = false
@@ -23,7 +23,7 @@ function Piece:constructor(parent, pos, pcDef)
     end
 end
 
-function Piece:mousepressed(x, y, button, istouch)
+function Poly:mousepressed(x, y, button, istouch)
     if button == 1 and self:pointWithin() then
         xOffset = self.pos.x - x
         yOffset = self.pos.y - y
@@ -32,14 +32,14 @@ function Piece:mousepressed(x, y, button, istouch)
     end
 end
 
-function Piece:mousereleased(x, y, button, istouch)
+function Poly:mousereleased(x, y, button, istouch)
     self.grabbed = false
     Game.timer:tween(.25, self.pos, self.starting_pos, 'out-quad', function()
         self.onTop = false
     end)
 end
 
-function Piece:mousemoved(x, y, istouch)
+function Poly:mousemoved(x, y, istouch)
     if self.grabbed then 
         local newX = x
         local newY = y
@@ -47,7 +47,7 @@ function Piece:mousemoved(x, y, istouch)
     end
 end
 
-function Piece:draw()
+function Poly:draw()
     deep.queue(self.onTop and 2 or 1, function ()
         love.graphics.setColor(self.color)
         love.graphics.rectangle('fill',
@@ -58,4 +58,4 @@ function Piece:draw()
 end
 
 
-return Piece
+return Poly

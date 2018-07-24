@@ -1,27 +1,27 @@
--- A piece definition is a simple array of coordinates relative to the piece's
+-- A poly definition is a simple array of coordinates relative to the poly's
 -- origin. A block is present at each coordinate. The origin is ALWAYS the top
 -- left block of any piece, however, a block does not have to actually exist in
 -- that origin.
 
--- A definition should also contain a "weight", which represents the piece's
+-- A definition should also contain a "weight", which represents the poly's
 -- likelihood to be given to the player, relative to the total sum of every 
--- piece's weight. Higher is more likely.
+-- poly's weight. Higher is more likely.
 
 -- Lastly, a definition should contain a color, which is a color name defined in
 -- colors.lua.
 
 
--- Definitions for classic 1010! pieces follow.
+-- Definitions for classic 1010! polies follow.
 
 
-local pieces = {}
+local polies = {}
 
 
 ------------
 -- Single --
 ------------
 
-pieces.one = {
+polies.one = {
     weight=2,
     color='one',
     {0, 0}
@@ -32,14 +32,14 @@ pieces.one = {
 -- Horizontal --
 ----------------
 
-pieces.twoH = {
+polies.twoH = {
     weight=3,
     color='two',
     {0, 0},
     {1, 0}
 }
 
-pieces.thrH = {
+polies.thrH = {
     weight=3,
     color='thr',
     {0, 0},
@@ -47,7 +47,7 @@ pieces.thrH = {
     {2, 0}
 }
 
-pieces.fouH = {
+polies.fouH = {
     weight=2,
     color='fou',
     {0, 0},
@@ -56,7 +56,7 @@ pieces.fouH = {
     {3, 0}
 }
 
-pieces.fivH = {
+polies.fivH = {
     weight=2,
     color='fiv',
     {0, 0},
@@ -71,14 +71,14 @@ pieces.fivH = {
 -- Vertical --
 --------------
 
-pieces.twoV = {
+polies.twoV = {
     weight=3,
     color='two',
     {0, 1},
     {0, 2}
 }
 
-pieces.thrV = {
+polies.thrV = {
     weight=3,
     color='thr',
     {0, 1},
@@ -86,7 +86,7 @@ pieces.thrV = {
     {0, 3}
 }
 
-pieces.fouV = {
+polies.fouV = {
     weight=2,
     color='fou',
     {0, 1},
@@ -95,7 +95,7 @@ pieces.fouV = {
     {0, 4}
 }
 
-pieces.fivV = {
+polies.fivV = {
     weight=2,
     color='fiv',
     {0, 1},
@@ -110,7 +110,7 @@ pieces.fivV = {
 -- Squares --
 -------------
 
-pieces.ssm = {
+polies.ssm = {
     weight=6,
     color='ssm',
     {0, 0},
@@ -119,7 +119,7 @@ pieces.ssm = {
     {0, 1},
 }
 
-pieces.slg = {
+polies.slg = {
     weight=2,
     color='slg',
     {0, 0},
@@ -138,7 +138,7 @@ pieces.slg = {
 -- Corner Small --
 ------------------
 
-pieces.csmNW = {
+polies.csmNW = {
     weight=2,
     color='csm',
     {1, 0},
@@ -146,7 +146,7 @@ pieces.csmNW = {
     {0, 1}
 }
 
-pieces.csmNE = {
+polies.csmNE = {
     weight=2,
     color='csm',
     {0, 0},
@@ -154,7 +154,7 @@ pieces.csmNE = {
     {1, 1}
 }
 
-pieces.csmSW = {
+polies.csmSW = {
     weight=2,
     color='csm',
     {0, 0}
@@ -162,7 +162,7 @@ pieces.csmSW = {
     {1, 1}
 }
 
-pieces.csmSE = {
+polies.csmSE = {
     weight=2,
     color='csm',
     {0, 1},
@@ -175,7 +175,7 @@ pieces.csmSE = {
 -- Corner Large --
 ------------------
 
-pieces.clgNW = {
+polies.clgNW = {
     weight=1,
     color='clg',
     {2, 0},
@@ -185,7 +185,7 @@ pieces.clgNW = {
     {0, 2}
 }
 
-pieces.clgNE = {
+polies.clgNE = {
     weight=1,
     color='clg',
     {0, 0},
@@ -195,7 +195,7 @@ pieces.clgNE = {
     {2, 2}
 }
 
-pieces.clgSW = {
+polies.clgSW = {
     weight=1,
     color='clg',
     {0, 0},
@@ -205,7 +205,7 @@ pieces.clgSW = {
     {2, 2}
 }
 
-pieces.clgSE = {
+polies.clgSE = {
     weight=1,
     color='clg',
     {0, 2},
@@ -216,4 +216,4 @@ pieces.clgSE = {
 }
 
 
-return pieces
+return polies

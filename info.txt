@@ -1,7 +1,7 @@
 Definitions:
 
 Grid = the 10x10 game board that the game is played on
-Piece = the shaped collections of blocks placed on the grid
+Poly = the shaped collections of blocks placed on the grid, named for https://en.wikipedia.org/wiki/Polyomino
 Block = the individual squares that make up pieces
 
 
