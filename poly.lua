@@ -7,16 +7,16 @@ local Block = require('blocks')
 
 local Poly = Node:extend()
 
-function Poly:constructor(parent, pos, pcDef)
+function Poly:constructor(parent, pos, polyDef)
     Node.constructor(self, parent, pos)
     self.starting_pos = pos:clone()  -- read-only hump.vector
     self.grabbed = false
     self.onTop = false
 
     self.blocks = {}
-    for i,offsets in ipairs(pcDef) do
+    for i,offsets in ipairs(polyDef) do
         bl = {}
-        bl.block = Block(self, pos:clone(), pcDef.color, Block.STATES.SELECT)
+        bl.block = Block(self, pos:clone(), polyDef.color, Block.STATES.SELECT)
         bl.xOffset = offsets[1]
         bl.yOffset = offsets[2]
         table.insert(self.blocks, bl)
