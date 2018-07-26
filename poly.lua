@@ -2,7 +2,7 @@ local Timer = require('ext.hump.timer')
 local vector = require('ext.hump.vector')
 
 local Node = require('node')
-local Block = require('blocks')
+local Block = require('block')
 
 
 local Poly = Node:extend()
@@ -17,17 +17,14 @@ function Poly:constructor(parent, pos, polyDef)
     for i,offsets in ipairs(polyDef) do
         bl = {}
         bl.block = Block(self, pos:clone(), polyDef.color, Block.STATES.SELECT)
-        bl.xOffset = offsets[1]
-        bl.yOffset = offsets[2]
+        bl.offset = vector.new(offsets[1], offsets[2])
         table.insert(self.blocks, bl)
     end
 end
 
 function Poly:mousepressed(x, y, button, istouch)
     if button == 1 and self:pointWithin() then
-        xOffset = self.pos.x - x
-        yOffset = self.pos.y - y
-        self.grabbed = vector.new(xOffset, yOffset)
+        self.grabbed = vector.new(self.pos.x - x, self.pos.y - y)
         self.onTop = true
     end
 end
@@ -44,6 +41,21 @@ function Poly:mousemoved(x, y, istouch)
         local newX = x
         local newY = y
         self.pos = vector.new(x, y) + self.grabbed
+    end
+end
+
+function Poly:update()
+    for i,bl in ipairs(self.blocks) do
+        local distance = bl.block.size.w + block:getSpacing()
+        local xOffset = bl.offset.x * distance
+        local yOffset = bl.offset.y * distance
+        bl.block.pos = self.pos + vector.new(xOffset, yOffset)
+
+        if self.onTop then
+            bl.block.onTop = true
+        else
+            bl.block.onTop = false
+        end
     end
 end
 

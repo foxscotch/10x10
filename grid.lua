@@ -1,7 +1,7 @@
 local vector = require('ext.hump.vector')
 
 local Node = require('node')
-local Block = require('blocks')
+local Block = require('block')
 
 
 local Grid = Node:extend()
@@ -13,41 +13,45 @@ Grid.DEFAULT_SIZE = {w=10, h=10}
 
 function Grid:constructor(parent, pos, size)
     Node.constructor(self, parent, pos)
-    self.size = size or Grid.DEFAULT_SIZE
+    self.gridSize = size or Grid.DEFAULT_SIZE
     self.blocks = {}
 
-    for i = 1, self.size.w do
+    local spacing = Block.DEFAULT_SPACING
+
+    for i = 1, self.gridSize.w do
         table.insert(self.blocks, {})
-        for j = 1, self.size.h do
-            local x = self:getOffset(i, 'y')
-            local y = self:getOffset(j, 'y')
-            local block = Block(self, vector.new(x, y))
+        for j = 1, self.gridSize.h do
+            local block = Block(self)
+            local x,y = self.getOffsets(i, j)
+            block.pos = vector.new(x, y)
             table.insert(self.blocks[i], block)
         end
     end
+
+    local w, h = self.gridSize.w, self.gridSize.h
+    local b = self.blocks[1][1].size.w
+    local width = b * w + spacing * (w-1)
+    local height = b * h + spacing * (h-1)
+    self.size = {w=width, h=height}
 end
 
 function Grid:setPos(vect)
     Node.setPos(self, vect)
-    for i = 1, self.size.w do
-        for j = 1, self.size.h do
-            local x = self:getOffset(i, 'x')
-            local y = self:getOffset(j, 'y')
+    for i = 1, self.gridSize.w do
+        for j = 1, self.gridSize.h do
+            local x,y = self.getOffsets(i, j)
             self.blocks[i][j]:setPos(vector.new(x, y))
         end
     end
 end
 
 function Grid:getOffset(row, dimension)
-    return (Block.BASE_SIZE + Grid.SPACING) * (row - 1) + self.pos[dimension]
+    local spacing = Block.DEFAULT_SPACING
+    return (Block.BASE_SIZE + spacing) * (row - 1) + self.pos[dimension]
 end
 
-function Grid:getFullSize()
-    local w, h = self.size.w, self.size.h
-    local b = self.blocks[1][1].size.w
-    local width = b * w + Grid.SPACING * (w-1)
-    local height = b * h + Grid.SPACING * (h-1)
-    return width, height
+function Grid:getOffsets(row, col)
+    return self.getOffset(row, 'x'), self.getOffset(row, 'y')
 end
 
 function Grid:mousereleased(x, y, button, istouch) end

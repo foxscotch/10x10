@@ -1,6 +1,7 @@
-local Block = require('blocks')
+local Block = require('block')
 local colors = require('colors')
 local Grid = require('grid')
+local Poly = require('poly')
 
 local deep = require('ext.deep')
 local Timer = require('ext.hump.timer')
@@ -26,9 +27,11 @@ Game.timer = Timer.new()
 
 function Game.init()
     g = Grid(nil, vector.new(100, 100))
-    gw, gh = g:getFullSize()
+    gw, gh = g.size.w, g.size.h
     ww, wh = love.window.getMode()
     g:setPos(vector.new(ww/2-gw/2, wh/2-gh/2))
+
+    p = Poly()
 end
 
 
