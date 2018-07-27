@@ -16,13 +16,11 @@ function Grid:constructor(parent, pos, size)
     self.gridSize = size or Grid.DEFAULT_SIZE
     self.blocks = {}
 
-    local spacing = Block.DEFAULT_SPACING
-
     for i = 1, self.gridSize.w do
         table.insert(self.blocks, {})
         for j = 1, self.gridSize.h do
             local block = Block(self)
-            local x,y = self.getOffsets(i, j)
+            local x,y = self:getOffsets(i, j)
             block.pos = vector.new(x, y)
             table.insert(self.blocks[i], block)
         end
@@ -30,17 +28,17 @@ function Grid:constructor(parent, pos, size)
 
     local w, h = self.gridSize.w, self.gridSize.h
     local b = self.blocks[1][1].size.w
-    local width = b * w + spacing * (w-1)
-    local height = b * h + spacing * (h-1)
+    local width = b * w + Block.DEFAULT_SPACING * (w-1)
+    local height = b * h + Block.DEFAULT_SPACING * (h-1)
     self.size = {w=width, h=height}
 end
 
-function Grid:setPos(vect)
-    Node.setPos(self, vect)
+function Grid:setPos(pos)
+    self.pos = pos
     for i = 1, self.gridSize.w do
         for j = 1, self.gridSize.h do
-            local x,y = self.getOffsets(i, j)
-            self.blocks[i][j]:setPos(vector.new(x, y))
+            local x,y = self:getOffsets(i, j)
+            self.blocks[i][j].pos = vector.new(x, y)
         end
     end
 end
@@ -51,10 +49,8 @@ function Grid:getOffset(row, dimension)
 end
 
 function Grid:getOffsets(row, col)
-    return self.getOffset(row, 'x'), self.getOffset(row, 'y')
+    return self:getOffset(row, 'x'), self:getOffset(col, 'y')
 end
-
-function Grid:mousereleased(x, y, button, istouch) end
 
 
 return Grid

@@ -2,6 +2,7 @@ local Block = require('block')
 local colors = require('colors')
 local Grid = require('grid')
 local Poly = require('poly')
+local pieces = require('definitions.classic')
 
 local deep = require('ext.deep')
 local Timer = require('ext.hump.timer')
@@ -26,12 +27,12 @@ Game.timer = Timer.new()
 
 
 function Game.init()
-    g = Grid(nil, vector.new(100, 100))
+    g = Grid(nil)
     gw, gh = g.size.w, g.size.h
     ww, wh = love.window.getMode()
     g:setPos(vector.new(ww/2-gw/2, wh/2-gh/2))
 
-    p = Poly()
+    p = Poly(nil, vector.new(100, 100), pieces.fouH)
 end
 
 
@@ -39,6 +40,7 @@ end
 
 function Game.update(dt)
     g:updateAll(dt)
+    p:updateAll(dt)
     Game.timer:update(dt)
 end
 
@@ -49,6 +51,7 @@ function Game.draw()
     Game.debugDisplay(string.format('time: %.2f', love.timer.getTime() - Game.startTime))
 
     g:drawAll(dt)
+    p:drawAll(dt)
 
     deep.execute()
     Game.printDebug()
@@ -56,14 +59,17 @@ end
 
 function Game.mousepressed(x, y, button, istouch)
     g:mousepressedAll(x, y, button, istouch)
+    p:mousepressedAll(x, y, button, istouch)
 end
 
 function Game.mousereleased(x, y, button, istouch)
     g:mousereleasedAll(x, y, button, istouch)
+    p:mousepressedAll(x, y, button, istouch)
 end
 
 function Game.mousemoved(x, y, dx, dy, istouch)
     g:mousemovedAll(x, y, istouch)
+    p:mousepressedAll(x, y, button, istouch)
 end
 
 
