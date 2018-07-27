@@ -157,7 +157,7 @@ polies.csmNE = {
 polies.csmSW = {
     weight=2,
     color='csm',
-    {0, 0}
+    {0, 0},
     {0, 1},
     {1, 1}
 }
