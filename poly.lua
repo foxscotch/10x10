@@ -24,7 +24,6 @@ function Poly:constructor(parent, pos, polyDef)
         bl.block = Block(self, pos:clone(), polyDef.color, Block.STATES.SELECT)
         bl.offset = vector.new(offsets[1], offsets[2])
         table.insert(self.blocks, bl)
-        print(bl.block)
     end
 
     local blockSize = self.blocks[1].block.size.w
