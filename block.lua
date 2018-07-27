@@ -42,7 +42,7 @@ function Block:getSpacing()
 end
 
 function Block:draw()
-    deep.queue(self.onTop and 1 or 2, function ()
+    deep.queue(self.onTop and 2 or 1, function ()
         love.graphics.setColor(Game.theme[self.color])
         love.graphics.rectangle('fill',
                                 self.pos.x, self.pos.y,
