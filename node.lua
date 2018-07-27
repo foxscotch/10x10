@@ -87,10 +87,11 @@ function Node:keyreleased() end
 -- the event handlers for themselves and all children.
 
 function eventAll(event)
+    local eventAll = event .. 'All'
     return function (self, ...)
         self[event](self, ...)
         for i,v in ipairs(self.children) do
-            v[event](v, ...)
+            v[eventAll](v, ...)
         end
     end
 end
