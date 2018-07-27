@@ -1,6 +1,7 @@
 local Block = require('block')
 local colors = require('colors')
 local Grid = require('grid')
+local Node = require('node')
 local Poly = require('poly')
 local pieces = require('definitions.classic')
 
@@ -27,20 +28,21 @@ Game.timer = Timer.new()
 
 
 function Game.init()
-    g = Grid(nil)
+    main = Node()
+
+    local g = Grid(main)
     gw, gh = g.size.w, g.size.h
     ww, wh = love.window.getMode()
     g:setPos(vector.new(ww/2-gw/2, wh/2-gh/2))
 
-    p = Poly(nil, vector.new(100, 100), pieces.fouH)
+    local p = Poly(main, vector.new(100, 100), pieces.fouH)
 end
 
 
 -- LÖVE callbacks --
 
 function Game.update(dt)
-    g:updateAll(dt)
-    p:updateAll(dt)
+    main:updateAll(dt)
     Game.timer:update(dt)
 end
 
@@ -50,26 +52,22 @@ function Game.draw()
     Game.debugDisplay(string.format('fps: %i', love.timer.getFPS()))
     Game.debugDisplay(string.format('time: %.2f', love.timer.getTime() - Game.startTime))
 
-    g:drawAll(dt)
-    p:drawAll(dt)
+    main:drawAll(dt)
 
     deep.execute()
     Game.printDebug()
 end
 
 function Game.mousepressed(x, y, button, istouch)
-    g:mousepressedAll(x, y, button, istouch)
-    p:mousepressedAll(x, y, button, istouch)
+    main:mousepressedAll(x, y, button, istouch)
 end
 
 function Game.mousereleased(x, y, button, istouch)
-    g:mousereleasedAll(x, y, button, istouch)
-    p:mousepressedAll(x, y, button, istouch)
+    main:mousereleasedAll(x, y, button, istouch)
 end
 
 function Game.mousemoved(x, y, dx, dy, istouch)
-    g:mousemovedAll(x, y, istouch)
-    p:mousepressedAll(x, y, button, istouch)
+    main:mousemovedAll(x, y, dx, dy, istouch)
 end
 
 
