@@ -28,6 +28,7 @@ Game.timer = Timer.new()
 
 
 function Game.init()
+    love.graphics.setBackgroundColor(Game.theme['bg'])
     main = Node()
 
     local g = Grid(main)
@@ -55,8 +56,6 @@ function Game.update(dt)
 end
 
 function Game.draw()
-    love.graphics.setBackgroundColor(Game.theme['bg'])
-
     Game.debugDisplay(string.format('fps: %i', love.timer.getFPS()))
     Game.debugDisplay(string.format('time: %.2f', love.timer.getTime() - Game.startTime))
 
