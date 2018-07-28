@@ -35,17 +35,15 @@ function Game.init()
     ww, wh = love.window.getMode()
     g:setPos(vector.new(ww/2-gw/2, wh/2-gh/2))
 
-    local p = Poly(main, vector.new(100, 25), pieces.one)
-    local p = Poly(main, vector.new(100, 50), pieces.twoH)
-    local p = Poly(main, vector.new(100, 75), pieces.thrH)
-    local p = Poly(main, vector.new(100, 100), pieces.fouH)
-    local p = Poly(main, vector.new(100, 125), pieces.fivH)
-    local p = Poly(main, vector.new(100, 150), pieces.ssm)
-    local p = Poly(main, vector.new(100, 200), pieces.slg)
-    local p = Poly(main, vector.new(100, 275), pieces.csmNW)
-    local p = Poly(main, vector.new(100, 325), pieces.clgNW)
-
-    local p = Poly(main, vector.new(100, 400), pieces.test)
+    Poly(main, vector.new(100, 25), pieces.one)
+    Poly(main, vector.new(100, 50), pieces.twoH)
+    Poly(main, vector.new(100, 75), pieces.thrH)
+    Poly(main, vector.new(100, 100), pieces.fouH)
+    Poly(main, vector.new(100, 125), pieces.fivH)
+    Poly(main, vector.new(100, 150), pieces.ssm)
+    Poly(main, vector.new(100, 200), pieces.slg)
+    Poly(main, vector.new(100, 275), pieces.csmNW)
+    Poly(main, vector.new(100, 325), pieces.clgNW)
 end
 
 
