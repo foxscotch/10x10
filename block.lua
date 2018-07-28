@@ -3,6 +3,7 @@ local Timer = require('ext.hump.timer')
 local vector = require('ext.hump.vector')
 
 local Node = require('node')
+local util = require('util')
 
 
 local Block = Node:extend()
@@ -30,7 +31,7 @@ Block.RADIUS_DIVISOR = 5
 
 function Block:constructor(parent, pos, color, state)
     Node.constructor(self, parent, pos)
-    self.state = state or Block.STATES.PLACED
+    self.state = util.copy(state or Block.STATES.PLACED)
     local size = Block.BASE_SIZE * self.state.factor
     self.size = {w=size, h=size}
     self.color = color or 'def'  -- string corresponding to theme color name
@@ -39,6 +40,15 @@ end
 
 function Block:getSpacing()
     return self.size.w * Block.SPACING_FACTOR
+end
+
+function Block:setState(state)
+    Game.timer:tween(.2, self.state, state, 'out-back')
+end
+
+function Block:update()
+    local size = Block.BASE_SIZE * self.state.factor
+    self.size = {w=size, h=size}
 end
 
 function Block:draw()
