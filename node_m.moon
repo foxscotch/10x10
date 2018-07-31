@@ -5,13 +5,13 @@ eventAll = (event) ->
     name = event .. 'All'
     (self, ...) ->
         self[event](self, ...)
-        for i,v in ipairs(self.children) do
+        for i,v in *@children do
             v[name](v, ...)
 
 
 class Node
-    constructor: (parent, pos, size) =>
-        if parent then
+    new: (parent, pos, size) =>
+        if parent
             @parent = parent
             @parent:addChild(self)
         else
@@ -22,7 +22,7 @@ class Node
         @size = size or w: 0, h: 0, r: 0
 
     delete:  =>
-        if @parent then
+        if @parent
             parent:removeChild(self)
 
     addChild: (node) =>
@@ -30,7 +30,7 @@ class Node
 
     removeChild: (node) =>
         for i,n in ipairs(@children) do
-            if n == node then
+            if n == node
                 table.remove(@children, i)
                 return
 
@@ -50,8 +50,10 @@ class Node
         return {xmin, xmax, ymin, ymax}
 
     pointWithin: (x, y) =>
-        if x == nil then x = love.mouse.getX()
-        if y == nil then y = love.mouse.getY()
+        if x == nil
+            x = love.mouse.getX()
+        if y == nil
+            y = love.mouse.getY()
 
         bounds = self:getBounds()
         withinX = x >= bounds[1] and x <= bounds[2]
