@@ -12,10 +12,10 @@ just specify the date that I downloaded the code.
  - [deep][deep] (2.0.3)
 
 It also uses [MoonScript 0.5.0][moon] for most of the files. Specifically,
-[conf.lua]() loads the MoonScript loader, and everything else just imports the
-plain MoonScript files. For this to work, you do need to have the MoonScript
-code or binaries somewhere on the import path. Personally, I just stuck it in
-the LÖVE folder, but whatever works for you.
+[conf.lua](./conf.lua) loads the MoonScript loader, and everything else just
+imports the plain MoonScript files. For this to work, you do need to have the
+MoonScript code or binaries somewhere on the import path. Personally, I just
+stuck it in the LÖVE folder, but whatever works for you.
 
 
 [1010]: http://gram.gs/game-detail-1010.html "1010!"
