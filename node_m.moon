@@ -13,7 +13,7 @@ class Node
     new: (parent, pos, size) =>
         if parent
             @parent = parent
-            @parent:addChild(self)
+            @parent\addChild(self)
         else
             @parent = nil
 
@@ -21,9 +21,9 @@ class Node
         @pos = pos or vector.new(0, 0)  -- hump.vector
         @size = size or w: 0, h: 0, r: 0
 
-    delete:  =>
+    delete: =>
         if @parent
-            parent:removeChild(self)
+            @parent\removeChild(self)
 
     addChild: (node) =>
         table.insert(@children, node)

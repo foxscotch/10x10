@@ -45,16 +45,16 @@ class Poly extends Node
 
     mousepressed: (x, y, button, istouch) =>
         if button == 1 and @\pointWithin()
-            for i,bl in *@blocks
+            for bl in *@blocks
                 bl.block\setState(Block.STATES.GRABBED)
             @grabbed = vector.new(@pos.x - x, @pos.y - y)
             @\setOnTop(true)
 
     mousereleased: (x, y, button, istouch) =>
-        for i,bl in *@blocks
+        for bl in *@blocks
             bl.block\setState(Block.STATES.SELECT)
         @grabbed = false
-        Game.timer\tween(.25, @pos, @starting_pos, 'out-quad', ->
+        Game.timer\tween .25, @pos, @starting_pos, 'out-quad', ->
             @\setOnTop(false)
 
     mousemoved: (x, y, istouch) =>
