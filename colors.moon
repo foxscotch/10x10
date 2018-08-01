@@ -1,4 +1,7 @@
-toFloats = (color) ->
+colors = {}
+
+
+colors.toFloats = (color) ->
     red = color[1] / 255
     green = color[2] / 255
     blue = color[3] / 255
@@ -7,11 +10,11 @@ toFloats = (color) ->
         alpha = color[4] / 255
     return {red, green, blue, alpha}
     
-convertTheme = (theme) ->
-    {n,toFloats c for n,c in pairs theme}
+colors.convertTheme = (theme) ->
+    {n,colors.toFloats c for n,c in pairs theme}
 
 -- Theme interface
-Theme = convertTheme {
+Theme = colors.convertTheme {
     -- Main UI colors
     bg: {0, 0, 0}
     stars: {0, 0, 0}
@@ -32,7 +35,7 @@ Theme = convertTheme {
     clg: {0, 0, 0}   -- large corner
 }
 
-Light = convertTheme {
+colors.Light = colors.convertTheme {
     bg: {255, 255, 255}
     stars: {238, 149, 74}
     score: {92, 189, 227}
@@ -51,7 +54,7 @@ Light = convertTheme {
     clg: {92, 189, 228}
 }
 
-Dark = convertTheme {
+colors.Dark = colors.convertTheme {
     bg: {28, 28, 28}
     stars: {238, 149, 74}  -- same as Light
     score: {92, 113, 227}
@@ -72,7 +75,7 @@ Dark = convertTheme {
     clg: {92, 189, 228}
 }
 
-Soft = convertTheme {
+colors.Soft = colors.convertTheme {
     bg: {221, 224, 203}
     stars: {191, 150, 115}
     score: {147, 156, 169}
@@ -94,13 +97,7 @@ Soft = convertTheme {
 
 -- Individual colors (just because I like them)
 
-cool_pink = toFloats {255, 0, 85}
+colors.cool_pink = colors.toFloats {255, 0, 85}
 
 
-return {
-    :toFloats
-    :convertTheme
-    :Light
-    :Dark
-    :Soft
-}
+return colors
