@@ -1,3 +1,5 @@
+require 'moonscript'
+
 function love.conf(t)
     t.window.title = '10x10'
     t.window.width = 896

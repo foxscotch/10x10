@@ -1,13 +1,13 @@
-Timer = require('ext.hump.timer')
-vector = require('ext.hump.vector')
+Timer = require 'ext.hump.timer'
+vector = require 'ext.hump.vector'
 
-Node = require('node_m')
-Block = require('block_m')
+Node = require 'node_m'
+Block = require 'block_m'
 
 
 class Poly extends Node
-    new: (parent, pos, polyDef) =>
-        super parent, pos
+    new: (game, parent, pos, polyDef) =>
+        super game, parent, pos
         @starting_pos = pos\clone()  -- read-only hump.vector
         @grabbed = false
 
@@ -15,14 +15,14 @@ class Poly extends Node
         @maxY = 0
 
         @blocks = {}
-        for i,offsets in *polyDef
+        for offsets in *polyDef
             if offsets[1] > @maxX
                 @maxX = offsets[1]
             if offsets[2] > @maxY
                 @maxY = offsets[2]
 
             bl = {}
-            bl.block = Block(@, pos\clone(), polyDef.color, Block.STATES.SELECT)
+            bl.block = Block(@game, @, pos\clone(), polyDef.color, Block.STATES.SELECT)
             bl.offset = vector.new(offsets[1], offsets[2])
             table.insert(@blocks, bl)
 
@@ -33,7 +33,7 @@ class Poly extends Node
         @size = @\getSize()
 
     setOnTop: (onTop) =>
-        for i,bl in *@blocks
+        for bl in *@blocks
             bl.block.onTop = onTop
 
     getSize: =>
@@ -54,7 +54,7 @@ class Poly extends Node
         for bl in *@blocks
             bl.block\setState(Block.STATES.SELECT)
         @grabbed = false
-        Game.timer\tween .25, @pos, @starting_pos, 'out-quad', ->
+        @game.timer\tween .25, @pos, @starting_pos, 'out-quad', ->
             @\setOnTop(false)
 
     mousemoved: (x, y, istouch) =>
@@ -64,7 +64,7 @@ class Poly extends Node
             @pos = vector.new(x, y) + @grabbed
 
     update: =>
-        for i,bl in *@blocks
+        for bl in *@blocks
             @size = @\getSize()
 
             distance = bl.block.size.w + bl.block\getSpacing()

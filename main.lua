@@ -1,29 +1,28 @@
-local Game = require('game')
+local Game = require('game_m')
+local game
 
-
-Game.DEBUG = true
-
-
-function love.mousepressed(x, y, button, istouch)
-    Game.mousepressed(x, y, button, istouch)
-end
-
-function love.mousereleased(x, y, button, istouch)
-    Game.mousereleased(x, y, button, istouch)
-end
-
-function love.mousemoved(x, y, dx, dy, istouch)
-    Game.mousemoved(x, y, dx, dy, istouch)
-end
 
 function love.load()
-    Game.init()
+    game = Game()
+    game.DEBUG = true
 end
 
 function love.update(dt)
-    Game.update(dt)
+    game:update(dt)
 end
 
 function love.draw()
-    Game.draw()
+    game:draw()
+end
+
+function love.mousepressed(x, y, button, istouch)
+    game:mousepressed(x, y, button, istouch)
+end
+
+function love.mousereleased(x, y, button, istouch)
+    game:mousereleased(x, y, button, istouch)
+end
+
+function love.mousemoved(x, y, dx, dy, istouch)
+    game:mousemoved(x, y, dx, dy, istouch)
 end

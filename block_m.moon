@@ -1,9 +1,9 @@
-deep = require('ext.deep')
-Timer = require('ext.hump.timer')
-vector = require('ext.hump.vector')
+Timer = require 'ext.hump.timer'
+deep = require 'ext.deep'
+vector = require 'ext.hump.vector'
 import copy from require 'moon'
 
-Node = require('node_m')
+Node = require 'node_m'
 
 
 class Block extends Node
@@ -17,8 +17,8 @@ class Block extends Node
         PLACED:  factor: 1.00, padding: 0.00
     }
 
-    new: (parent, pos, color, state) =>
-        super parent, pos
+    new: (game, parent, pos, color, state) =>
+        super game, parent, pos
         @state = copy state or @@STATES.PLACED
         size = @@BASE_SIZE * @state.factor
         @size = w: size, h: size
@@ -29,7 +29,7 @@ class Block extends Node
         @size.w * @@SPACING_FACTOR
 
     setState: (state) =>
-        Game.timer\tween(.2, @state, state, 'out-back')
+        @game.timer\tween(.2, @state, state, 'out-back')
 
     update: =>
         size = @@BASE_SIZE * @state.factor
@@ -40,7 +40,7 @@ class Block extends Node
         size = @size.w - padding
         radius = size / @@RADIUS_DIVISOR
         deep.queue @onTop and 2 or 1, ->
-            love.graphics.setColor Game.theme[@color]
+            love.graphics.setColor @game.theme[@color]
             love.graphics.rectangle('fill',
                                     @pos.x + padding, @pos.y + padding,
                                     size, size,

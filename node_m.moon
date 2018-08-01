@@ -1,16 +1,18 @@
-vector = require('ext.hump.vector')
+vector = require 'ext.hump.vector'
 
 
 eventAll = (event) ->
     name = event .. 'All'
     (self, ...) ->
         self[event](self, ...)
-        for i,v in *@children do
+        for v in *@children do
             v[name](v, ...)
 
 
 class Node
-    new: (parent, pos, size) =>
+    new: (game, parent, pos, size) =>
+        @game = game
+
         if parent
             @parent = parent
             @parent\addChild(self)
@@ -55,7 +57,7 @@ class Node
         if y == nil
             y = love.mouse.getY()
 
-        bounds = self:getBounds()
+        bounds = @getBounds()
         withinX = x >= bounds[1] and x <= bounds[2]
         withinY = y >= bounds[3] and y <= bounds[4]
         return withinX and withinY
