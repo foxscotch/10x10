@@ -21,6 +21,7 @@ class Game
         @init!
 
     init: =>
+        import p from require 'moon'
         love.graphics.setBackgroundColor @theme.bg
 
         @main = Node @
@@ -76,7 +77,7 @@ class Game
         if @DEBUG
             position = 2
             for i,str in ipairs @debugStrings
-                love.graphics.setColor colors.toFloats({255, 255, 255})
+                love.graphics.setColor colors.Color(255, 255, 255)
                 love.graphics.print str, 2, position
                 position += 15
             @debugStrings = {}
