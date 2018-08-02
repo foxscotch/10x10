@@ -1,6 +1,6 @@
-Timer = require 'ext.hump.timer'
-deep = require 'ext.deep'
-vector = require 'ext.hump.vector'
+Timer = require 'vendor.hump.timer'
+deep = require 'vendor.deep'
+vector = require 'vendor.hump.vector'
 import copy from require 'moon'
 
 Node = require 'node'

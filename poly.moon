@@ -1,5 +1,5 @@
-Timer = require 'ext.hump.timer'
-vector = require 'ext.hump.vector'
+Timer = require 'vendor.hump.timer'
+vector = require 'vendor.hump.vector'
 
 Node = require 'node'
 Block = require 'block'

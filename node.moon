@@ -1,4 +1,4 @@
-vector = require 'ext.hump.vector'
+vector = require 'vendor.hump.vector'
 
 
 eventAll = (event) ->
