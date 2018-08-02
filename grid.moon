@@ -1,8 +1,8 @@
 vector = require 'ext.hump.vector'
 import copy from require 'moon'
 
-Node = require 'node_m'
-Block = require 'block_m'
+Node = require 'node'
+Block = require 'block'
 
 
 class Grid extends Node

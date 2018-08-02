@@ -1,8 +1,8 @@
 Timer = require 'ext.hump.timer'
 vector = require 'ext.hump.vector'
 
-Node = require 'node_m'
-Block = require 'block_m'
+Node = require 'node'
+Block = require 'block'
 
 
 class Poly extends Node

@@ -2,11 +2,11 @@ Timer = require 'ext.hump.timer'
 deep = require 'ext.deep'
 vector = require 'ext.hump.vector'
 
-Node = require 'node_m'
-Grid = require 'grid_m'
-Poly = require 'poly_m'
-colors = require 'colors_m'
-pieces = require 'definitions.classic_m'
+Node = require 'node'
+Grid = require 'grid'
+Poly = require 'poly'
+colors = require 'colors'
+pieces = require 'definitions.classic'
 
 
 class Game

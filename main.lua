@@ -1,4 +1,4 @@
-local Game = require('game_m')
+local Game = require('game')
 local game
 
 

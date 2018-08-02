@@ -3,7 +3,7 @@ deep = require 'ext.deep'
 vector = require 'ext.hump.vector'
 import copy from require 'moon'
 
-Node = require 'node_m'
+Node = require 'node'
 
 
 class Block extends Node
