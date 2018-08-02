@@ -1,6 +1,6 @@
 Timer = require 'vendor.hump.timer'
 deep = require 'vendor.deep'
-vector = require 'vendor.hump.vector'
+V = require 'vector'
 
 Node = require 'node'
 Grid = require 'grid'
@@ -29,17 +29,17 @@ class Game
         @grid = Grid @, @main
         gw, gh = @grid.size.w, @grid.size.h
         ww, wh = love.window.getMode!
-        @grid\setPos vector.new(ww/2-gw/2, wh/2-gh/2)
+        @grid\setPos V(ww/2-gw/2, wh/2-gh/2)
 
-        Poly @, @main, vector.new(100, 30), pieces.one
-        Poly @, @main, vector.new(100, 60), pieces.twoH
-        Poly @, @main, vector.new(100, 90), pieces.thrH
-        Poly @, @main, vector.new(100, 120), pieces.fouH
-        Poly @, @main, vector.new(100, 150), pieces.fivH
-        Poly @, @main, vector.new(100, 180), pieces.ssm
-        Poly @, @main, vector.new(100, 240), pieces.slg
-        Poly @, @main, vector.new(100, 330), pieces.csmNW
-        Poly @, @main, vector.new(100, 390), pieces.clgNW
+        Poly @, @main, V(100, 30), pieces.one
+        Poly @, @main, V(100, 60), pieces.twoH
+        Poly @, @main, V(100, 90), pieces.thrH
+        Poly @, @main, V(100, 120), pieces.fouH
+        Poly @, @main, V(100, 150), pieces.fivH
+        Poly @, @main, V(100, 180), pieces.ssm
+        Poly @, @main, V(100, 240), pieces.slg
+        Poly @, @main, V(100, 330), pieces.csmNW
+        Poly @, @main, V(100, 390), pieces.clgNW
 
 
     -- LÖVE callbacks --

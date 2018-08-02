@@ -1,4 +1,4 @@
-vector = require 'vendor.hump.vector'
+V = require 'vector'
 
 
 eventAll = (event) ->
@@ -20,7 +20,7 @@ class Node
             @parent = nil
 
         @children = {}
-        @pos = pos or vector.new(0, 0)  -- hump.vector
+        @pos = pos or V(0, 0)
         @size = size or w: 0, h: 0, r: 0
 
     delete: =>
@@ -37,12 +37,12 @@ class Node
                 return
 
     setPos: (vect) =>
-        @pos = vector.new(vect.x, vect.y)
+        @pos = V(vect.x, vect.y)
 
     getCenter: =>
         x = @pos.x + @size.w/2
         y = @pos.y + @size.h/2
-        return vector.new(x, y)
+        return V(x, y)
 
     getBounds: =>
         xmin = @pos.x

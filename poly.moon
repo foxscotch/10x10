@@ -1,5 +1,5 @@
 Timer = require 'vendor.hump.timer'
-vector = require 'vendor.hump.vector'
+V = require 'vector'
 
 Node = require 'node'
 Block = require 'block'
@@ -8,7 +8,7 @@ Block = require 'block'
 class Poly extends Node
     new: (game, parent, pos, polyDef) =>
         super game, parent, pos
-        @starting_pos = pos\clone()  -- read-only hump.vector
+        @starting_pos = pos\clone()
         @grabbed = false
 
         @maxX = 0
@@ -23,7 +23,7 @@ class Poly extends Node
 
             bl = {}
             bl.block = Block(@game, @, pos\clone(), polyDef.color, Block.STATES.SELECT)
-            bl.offset = vector.new(offsets[1], offsets[2])
+            bl.offset = V(offsets[1], offsets[2])
             table.insert(@blocks, bl)
 
         blockSize = @blocks[1].block.size.w
@@ -47,7 +47,7 @@ class Poly extends Node
         if button == 1 and @\pointWithin()
             for bl in *@blocks
                 bl.block\setState(Block.STATES.GRABBED)
-            @grabbed = vector.new(@pos.x - x, @pos.y - y)
+            @grabbed = V(@pos.x - x, @pos.y - y)
             @\setOnTop(true)
 
     mousereleased: (x, y, button, istouch) =>
@@ -61,16 +61,14 @@ class Poly extends Node
         if @grabbed
             newX = x
             newY = y
-            @pos = vector.new(x, y) + @grabbed
+            @pos = V(x, y) + @grabbed
 
     update: =>
         for bl in *@blocks
             @size = @\getSize()
 
             distance = bl.block.size.w + bl.block\getSpacing()
-            xOffset = bl.offset.x * distance
-            yOffset = bl.offset.y * distance
-            bl.block.pos = @pos + vector.new(xOffset, yOffset)
+            bl.block.pos = @pos + bl.offset * distance
 
 
 return Poly

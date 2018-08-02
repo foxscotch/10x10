@@ -1,4 +1,4 @@
-vector = require 'vendor.hump.vector'
+V = require 'vector'
 import copy from require 'moon'
 
 Node = require 'node'
@@ -19,7 +19,7 @@ class Grid extends Node
             for j = 1, @gridSize.h
                 block = Block(@game, @)
                 x,y = @getOffsets(i, j)
-                block.pos = vector.new(x, y)
+                block.pos = V(x, y)
                 table.insert(@blocks[i], block)
 
         w, h = @gridSize.w, @gridSize.h
@@ -33,7 +33,7 @@ class Grid extends Node
         for i = 1, @gridSize.w
             for j = 1, @gridSize.h
                 x,y = @getOffsets(i, j)
-                @blocks[i][j].pos = vector.new(x, y)
+                @blocks[i][j].pos = V(x, y)
 
     getOffset: (row, dimension) =>
         spacing = Block.DEFAULT_SPACING

@@ -1,6 +1,6 @@
 Timer = require 'vendor.hump.timer'
 deep = require 'vendor.deep'
-vector = require 'vendor.hump.vector'
+V = require 'vector'
 import copy from require 'moon'
 
 Node = require 'node'
