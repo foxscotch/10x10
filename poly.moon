@@ -6,30 +6,24 @@ Block = require 'block'
 
 
 class Poly extends Node
-    new: (game, parent, pos, polyDef) =>
+    new: (game, parent, pos, def) =>
         super game, parent, pos
         @starting_pos = pos\clone()
         @grabbed = false
 
-        @maxX = 0
-        @maxY = 0
+        @max = def.max
 
         @blocks = {}
-        for offsets in *polyDef
-            if offsets[1] > @maxX
-                @maxX = offsets[1]
-            if offsets[2] > @maxY
-                @maxY = offsets[2]
-
+        for offsets in *def
             bl = {}
-            bl.block = Block(@game, @, pos\clone(), polyDef.color, Block.STATES.SELECT)
+            bl.block = Block(@game, @, pos\clone(), def.color, Block.STATES.SELECT)
             bl.offset = V(offsets[1], offsets[2])
             table.insert(@blocks, bl)
 
         blockSize = @blocks[1].block.size.w
         spacing = @blocks[1].block\getSpacing()
-        w = ((@maxX + 1) * blockSize) + (@maxX * spacing)
-        h = ((@maxY + 1) * blockSize) + (@maxY * spacing)
+        w = ((@max.x + 1) * blockSize) + (@max.x * spacing)
+        h = ((@max.y + 1) * blockSize) + (@max.y * spacing)
         @size = @\getSize()
 
     setOnTop: (onTop) =>
@@ -39,8 +33,8 @@ class Poly extends Node
     getSize: =>
         blockSize = @blocks[1].block.size.w
         spacing = @blocks[1].block\getSpacing()
-        w = ((@maxX + 1) * blockSize) + (@maxX * spacing)
-        h = ((@maxY + 1) * blockSize) + (@maxY * spacing)
+        w = ((@max.x + 1) * blockSize) + (@max.x * spacing)
+        h = ((@max.y + 1) * blockSize) + (@max.y * spacing)
         return w: w, h: h
 
     mousepressed: (x, y, button, istouch) =>
