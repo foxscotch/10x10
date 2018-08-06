@@ -5,6 +5,8 @@ V = require 'vector'
 Node = require 'node'
 Grid = require 'grid'
 Poly = require 'poly'
+import PolyDefCollection from require 'selection'
+
 colors = require 'colors'
 pieces = require 'definitions.classic'
 
@@ -21,7 +23,6 @@ class Game
         @init!
 
     init: =>
-        import p from require 'moon'
         love.graphics.setBackgroundColor @theme.bg
 
         @main = Node @
@@ -31,15 +32,11 @@ class Game
         ww, wh = love.window.getMode!
         @grid\setPos V(ww/2-gw/2, wh/2-gh/2)
 
-        Poly @, @main, V(100, 30), pieces.one
-        Poly @, @main, V(100, 60), pieces.twoH
-        Poly @, @main, V(100, 90), pieces.thrH
-        Poly @, @main, V(100, 120), pieces.fouH
-        Poly @, @main, V(100, 150), pieces.fivH
-        Poly @, @main, V(100, 180), pieces.ssm
-        Poly @, @main, V(100, 240), pieces.slg
-        Poly @, @main, V(100, 330), pieces.csmNW
-        Poly @, @main, V(100, 390), pieces.clgNW
+        pieces = PolyDefCollection pieces
+
+        Poly @, @main, V(100,  30), pieces\random!
+        Poly @, @main, V(100, 150), pieces\random!
+        Poly @, @main, V(100, 270), pieces\random!
 
 
     -- LÖVE callbacks --

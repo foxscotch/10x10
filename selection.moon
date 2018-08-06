@@ -16,10 +16,20 @@ class PolyDef
 class PolyDefCollection
     new: (defs) =>
         @defs = {}
+        @weight = 0
         for name,def in pairs defs
-            table.insert @defs, PolyDef(name, def)
+            pdef = PolyDef name, def
+            @weight += pdef.weight
+            table.insert @defs, pdef
+    
+    select: (n=3) =>
+        [@random! for i=1,n]
+    
+    random: =>
+        r = math.random(1, @weight)
+        for def in *@defs
+            r -= def.weight
+            if r <= 0
+                return def
 
-
-import p from require 'moon'
-pdc = PolyDefCollection require 'definitions.classic'
-p pdc
+return {:PolyDef, :PolyDefCollection}

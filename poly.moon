@@ -4,6 +4,8 @@ V = require 'vector'
 Node = require 'node'
 Block = require 'block'
 
+import p from require 'moon'
+
 
 class Poly extends Node
     new: (game, parent, pos, def) =>
@@ -14,7 +16,7 @@ class Poly extends Node
         @max = def.max
 
         @blocks = {}
-        for offsets in *def
+        for offsets in *def.blocks
             bl = {}
             bl.block = Block(@game, @, pos\clone(), def.color, Block.STATES.SELECT)
             bl.offset = V(offsets[1], offsets[2])
