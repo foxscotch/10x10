@@ -153,7 +153,7 @@ polies.pent_F = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'rotate_all_and_reflect'
-    weight: 2
+    weight: 1
     {1, 0}
     {2, 0}
     {0, 1}
@@ -165,7 +165,7 @@ polies.pent_L = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'rotate_all_and_reflect'
-    weight: 2
+    weight: 1
     {0, 0}
     {0, 1}
     {0, 2}
@@ -177,7 +177,7 @@ polies.pent_N = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'rotate_all_and_reflect'
-    weight: 2
+    weight: 1
     {1, 0}
     {1, 1}
     {0, 2}
@@ -189,7 +189,7 @@ polies.pent_P = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'rotate_all_and_reflect'
-    weight: 2
+    weight: 1
     {0, 0}
     {1, 0}
     {0, 1}
@@ -201,7 +201,7 @@ polies.pent_T = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'rotate_all'
-    weight: 2
+    weight: 1
     {0, 0}
     {1, 0}
     {2, 0}
@@ -213,7 +213,7 @@ polies.pent_U = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'rotate_all'
-    weight: 2
+    weight: 1
     {0, 0}
     {0, 1}
     {1, 1}
@@ -225,7 +225,7 @@ polies.pent_W = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'rotate_all'
-    weight: 2
+    weight: 1
     {2, 0}
     {2, 1}
     {1, 1}
@@ -237,7 +237,7 @@ polies.pent_X = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'none'
-    weight: 2
+    weight: 1
     {1, 0}
     {0, 1}
     {1, 1}
@@ -249,7 +249,7 @@ polies.pent_Y = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'rotate_all_and_reflect'
-    weight: 2
+    weight: 1
     {1, 0}
     {0, 1}
     {1, 1}
@@ -261,7 +261,7 @@ polies.pent_Z = {
     color: 'one'
     groups: {'pentominoes'}
     transform: 'rotate_once_and_reflect'
-    weight: 2
+    weight: 1
     {0, 0}
     {1, 0}
     {1, 1}
