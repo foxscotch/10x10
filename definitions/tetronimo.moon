@@ -8,7 +8,7 @@ polies = {}
 polies.tet_L = {
     weight: 2
     color: 'one'
-    transform: 'rotate_and_reflect'
+    transform: 'rotate_all_and_reflect'
     {0, 0}
     {0, 1}
     {0, 2}
@@ -28,7 +28,7 @@ polies.tet_T = {
 polies.tet_S = {
     weight: 2
     color: 'one'
-    transform: 'rotate_and_reflect'
+    transform: 'rotate_once_and_reflect'
     {0, 0}
     {0, 1}
     {1, 1}

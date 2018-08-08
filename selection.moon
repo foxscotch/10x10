@@ -3,12 +3,6 @@ V = require 'vector'
 
 
 class PolyDef
-    @NONE:               0
-    @ROTATE_ONCE:        1
-    @ROTATE_ALL:         2
-    @REFLECT:            3
-    @ROTATE_AND_REFLECT: 4
-
     new: (@name, @color, @weight, blocks) =>
         @max = V(0, 0)
         @blocks = {}
@@ -20,18 +14,25 @@ class PolyDef
     fromDef: (name, rawDef) ->
         {:color, :weight} = rawDef
         return PolyDef name, color, weight, rawDef
-    
+
     transform: (name, transFunc) =>
         newBlocks = {}
         for block in *@blocks
             table.insert newBlocks, transFunc(block)
         return PolyDef name, @color, @weight, newBlocks
     
-    rotate: (coords) =>
-        {-coords[2] + @max.x + 1, coords[1]}
-    
-    reflect: (coords) =>
-        {-coords[1] + @max.x, coords[2]}
+    swapAxes: (co) => {co[2], co[1]}
+    reflectPointV: (co) => {-co[1] + @max.x, co[2]}
+    reflectPointH: (co) => {co[1], -co[2] + @max.y}
+    rotatePoint90: (co) => {-co[2] + @max.x + 1, co[1]}
+    rotatePoint180: (co) => @reflectPointH @reflectPointV co
+    rotatePoint270: (co) => @rotatePoint90 @reflectPointH @reflectPointV co
+
+    swap: (name) => @transform name, @\swapAxes
+    reflect: (name) => @transform name, @\reflectPointV
+    rotate90: (name) => @transform name, @\rotatePoint90
+    rotate180: (name) => @transform name, @\rotatePoint180
+    rotate270: (name) => @transform name, @\rotatePoint270
 
 
 class PolyDefCollection
@@ -42,8 +43,31 @@ class PolyDefCollection
         for arg in *args
             for name,def in pairs arg
                 pdef = PolyDef.fromDef name, def
-                @weight += pdef.weight
-                table.insert @defs, pdef
+                @add pdef
+                t = def.transform
+                if string.find(t, 'rotate')
+                    if string.find(t, 'once')
+                        @add pdef\swap name .. '_90'
+                    else
+                        @add pdef\rotate90 name .. '_90'
+                    if string.find(t, 'all')
+                        @add pdef\rotate180 name .. '_180'
+                        @add pdef\rotate270 name .. '_270'
+                if string.find(t, 'reflect')
+                    reflected = pdef\reflect name .. '_M'
+                    @add reflected
+                    if string.find(t, 'rotate')
+                        if string.find(t, 'once')
+                            @add reflected\swap name .. '_M90'
+                        else
+                            @add reflected\rotate90 name .. '_M90'
+                        if string.find(t, 'all')
+                            @add reflected\rotate180 name .. '_M180'
+                            @add reflected\rotate270 name .. '_M270'
+    
+    add: (def) =>
+        @weight += def.weight
+        table.insert @defs, def
     
     select: (n=3) =>
         [@random! for i=1,n]
