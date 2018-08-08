@@ -14,23 +14,20 @@
 -- Definitions for classic 1010! polies follow.
 
 
-PD = require('selection').PolyDef
-
-
 polies = {}
 
 
 polies.one = {
     weight: 2
     color: 'one'
-    transform: PD.NONE
+    transform: 'none'
     {0, 0}
 }
 
 polies.two = {
     weight: 3
     color: 'two'
-    transform: PD.ROTATE_ONCE
+    transform: 'rotate_once'
     {0, 0}
     {1, 0}
 }
@@ -38,7 +35,7 @@ polies.two = {
 polies.three = {
     weight: 3
     color: 'thr'
-    transform: PD.ROTATE_ONCE
+    transform: 'rotate_once'
     {0, 0}
     {1, 0}
     {2, 0}
@@ -47,7 +44,7 @@ polies.three = {
 polies.four = {
     weight: 2
     color: 'fou'
-    transform: PD.ROTATE_ONCE
+    transform: 'rotate_once'
     {0, 0}
     {1, 0}
     {2, 0}
@@ -57,7 +54,7 @@ polies.four = {
 polies.five = {
     weight: 2
     color: 'fiv'
-    transform: PD.ROTATE_ONCE
+    transform: 'rotate_once'
     {0, 0}
     {1, 0}
     {2, 0}
@@ -68,7 +65,7 @@ polies.five = {
 polies.ssm = {
     weight: 6
     color: 'ssm'
-    transform: PD.NONE
+    transform: 'none'
     {0, 0}
     {1, 0}
     {1, 1}
@@ -78,7 +75,7 @@ polies.ssm = {
 polies.slg = {
     weight: 2
     color: 'slg'
-    transform: PD.NONE
+    transform: 'none'
     {0, 0}
     {1, 0}
     {2, 0}
@@ -93,7 +90,7 @@ polies.slg = {
 polies.small_corner = {
     weight: 2
     color: 'csm'
-    transform: PD.ROTATE_ALL
+    transform: 'rotate_all'
     {1, 0}
     {0, 0}
     {0, 1}
@@ -102,7 +99,7 @@ polies.small_corner = {
 polies.large_corner = {
     weight: 1
     color: 'clg'
-    transform: PD.ROTATE_ALL
+    transform: 'rotate_all'
     {2, 0}
     {1, 0}
     {0, 0}
