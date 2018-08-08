@@ -8,7 +8,7 @@ Poly = require 'poly'
 import PolyDefCollection from require 'selection'
 
 colors = require 'colors'
-pieces = require 'definitions.classic'
+pieces = require 'definitions'
 
 
 class Game
@@ -32,7 +32,7 @@ class Game
         ww, wh = love.window.getMode!
         @grid\setPos V(ww/2-gw/2, wh/2-gh/2)
 
-        pieces = PolyDefCollection pieces
+        pieces = PolyDefCollection(pieces)\filter('classic')
 
         Poly @, @main, V(100,  30), pieces\random!
         Poly @, @main, V(100, 150), pieces\random!

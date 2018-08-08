@@ -3,7 +3,7 @@ V = require 'vector'
 
 
 class PolyDef
-    new: (@name, @color, @weight, blocks) =>
+    new: (@name, @color, @groups, @weight, blocks) =>
         @max = V(0, 0)
         @blocks = {}
         for i,b in ipairs blocks
@@ -12,8 +12,14 @@ class PolyDef
             if b[2] > @max.y then @max.y = b[2]
     
     fromDef: (name, rawDef) ->
-        {:color, :weight} = rawDef
-        return PolyDef name, color, weight, rawDef
+        {:color, :groups, :weight} = rawDef
+        return PolyDef name, color, groups, weight, rawDef
+    
+    inGroups: (groups) =>
+        for group in *groups
+            for sgroup in *@groups
+                if group == sgroup then return true
+        return false
     
     toMatrix: =>
         matrix = {}
@@ -42,13 +48,13 @@ class PolyDef
             for x=1,#matrix[y]
                 if matrix[y][x]
                     table.insert newBlocks, {x-1, y-1}
-        return PolyDef name, @color, @weight, newBlocks
+        return PolyDef name, @color, @groups, @weight, newBlocks
 
     reflect: (name) =>
         newBlocks = {}
         for bl in *@blocks
             table.insert newBlocks, {-bl[1] + @max.x, bl[2]}
-        return PolyDef name, @color, @weight, newBlocks
+        return PolyDef name, @color, @groups, @weight, newBlocks
     
     rotate: (name, num) =>
         matrix = @toMatrix!
@@ -88,6 +94,15 @@ class PolyDefCollection
     add: (def) =>
         @weight += def.weight
         table.insert @defs, def
+    
+    filter: (...) =>
+        groups = {...}
+        pdc = PolyDefCollection!
+        for def in *@defs
+            -- TODO: Actually make it check for containment lol
+            if def\inGroups groups
+                pdc\add def
+        return pdc
     
     select: (n=3) =>
         [@random! for i=1,n]
