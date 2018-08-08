@@ -20,9 +20,9 @@ polies.tet_T = {
     color: 'one'
     transform: 'rotate_all'
     {0, 0}
-    {0, 1}
+    {1, 0}
+    {2, 0}
     {1, 1}
-    {1, 2}
 }
 
 polies.tet_S = {
@@ -30,9 +30,9 @@ polies.tet_S = {
     color: 'one'
     transform: 'rotate_and_reflect'
     {0, 0}
-    {1, 0}
-    {2, 0}
+    {0, 1}
     {1, 1}
+    {1, 2}
 }
 
 
