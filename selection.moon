@@ -3,6 +3,12 @@ V = require 'vector'
 
 
 class PolyDef
+    @NONE:               0
+    @ROTATE_ONCE:        1
+    @ROTATE_ALL:         2
+    @REFLECT:            3
+    @ROTATE_AND_REFLECT: 4
+
     new: (@name, @color, @weight, blocks) =>
         @max = V(0, 0)
         @blocks = {}
@@ -15,11 +21,17 @@ class PolyDef
         {:color, :weight} = rawDef
         return PolyDef name, color, weight, rawDef
     
-    reflect: =>
+    transform: (name, transFunc) =>
         newBlocks = {}
         for block in *@blocks
-            table.insert newBlocks, {-block[1] + @max.x, block[2]}
-        return PolyDef @name .. 'M', @color, @weight, newBlocks
+            table.insert newBlocks, transFunc(block)
+        return PolyDef name, @color, @weight, newBlocks
+    
+    rotate: (coords) =>
+        {-coords[2] + @max.x + 1, coords[1]}
+    
+    reflect: (coords) =>
+        {-coords[1] + @max.x, coords[2]}
 
 
 class PolyDefCollection

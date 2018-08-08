@@ -14,51 +14,50 @@
 -- Definitions for classic 1010! polies follow.
 
 
+PD = require('selection').PolyDef
+
+
 polies = {}
 
-
-------------
--- Single --
-------------
 
 polies.one = {
     weight: 2
     color: 'one'
+    transform: PD.NONE
     {0, 0}
 }
 
-
-----------------
--- Horizontal --
-----------------
-
-polies.twoH = {
+polies.two = {
     weight: 3
     color: 'two'
+    transform: PD.ROTATE_ONCE
     {0, 0}
     {1, 0}
 }
 
-polies.thrH = {
+polies.three = {
     weight: 3
     color: 'thr'
+    transform: PD.ROTATE_ONCE
     {0, 0}
     {1, 0}
     {2, 0}
 }
 
-polies.fouH = {
+polies.four = {
     weight: 2
     color: 'fou'
+    transform: PD.ROTATE_ONCE
     {0, 0}
     {1, 0}
     {2, 0}
     {3, 0}
 }
 
-polies.fivH = {
+polies.five = {
     weight: 2
     color: 'fiv'
+    transform: PD.ROTATE_ONCE
     {0, 0}
     {1, 0}
     {2, 0}
@@ -66,53 +65,10 @@ polies.fivH = {
     {4, 0}
 }
 
-
---------------
--- Vertical --
---------------
-
-polies.twoV = {
-    weight: 3
-    color: 'two'
-    {0, 1}
-    {0, 2}
-}
-
-polies.thrV = {
-    weight: 3
-    color: 'thr'
-    {0, 1}
-    {0, 2}
-    {0, 3}
-}
-
-polies.fouV = {
-    weight: 2
-    color: 'fou'
-    {0, 1}
-    {0, 2}
-    {0, 3}
-    {0, 4}
-}
-
-polies.fivV = {
-    weight: 2
-    color: 'fiv'
-    {0, 1}
-    {0, 2}
-    {0, 3}
-    {0, 4}
-    {0, 5}
-}
-
-
--------------
--- Squares --
--------------
-
 polies.ssm = {
     weight: 6
     color: 'ssm'
+    transform: PD.NONE
     {0, 0}
     {1, 0}
     {1, 1}
@@ -122,6 +78,7 @@ polies.ssm = {
 polies.slg = {
     weight: 2
     color: 'slg'
+    transform: PD.NONE
     {0, 0}
     {1, 0}
     {2, 0}
@@ -133,86 +90,24 @@ polies.slg = {
     {1, 1}
 }
 
-
-------------------
--- Corner Small --
-------------------
-
-polies.csmNW = {
+polies.small_corner = {
     weight: 2
     color: 'csm'
+    transform: PD.ROTATE_ALL
     {1, 0}
     {0, 0}
     {0, 1}
 }
 
-polies.csmNE = {
-    weight: 2
-    color: 'csm'
-    {0, 0}
-    {1, 0}
-    {1, 1}
-}
-
-polies.csmSW = {
-    weight: 2
-    color: 'csm'
-    {0, 0}
-    {0, 1}
-    {1, 1}
-}
-
-polies.csmSE = {
-    weight: 2
-    color: 'csm'
-    {0, 1}
-    {1, 1}
-    {1, 0}
-}
-
-
-------------------
--- Corner Large --
-------------------
-
-polies.clgNW = {
+polies.large_corner = {
     weight: 1
     color: 'clg'
+    transform: PD.ROTATE_ALL
     {2, 0}
     {1, 0}
     {0, 0}
     {0, 1}
     {0, 2}
-}
-
-polies.clgNE = {
-    weight: 1
-    color: 'clg'
-    {0, 0}
-    {1, 0}
-    {2, 0}
-    {2, 1}
-    {2, 2}
-}
-
-polies.clgSW = {
-    weight: 1
-    color: 'clg'
-    {0, 0}
-    {0, 1}
-    {0, 2}
-    {1, 2}
-    {2, 2}
-}
-
-polies.clgSE = {
-    weight: 1
-    color: 'clg'
-    {0, 2}
-    {1, 2}
-    {2, 2}
-    {2, 1}
-    {2, 0}
 }
 
 
