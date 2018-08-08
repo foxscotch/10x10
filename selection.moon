@@ -14,25 +14,51 @@ class PolyDef
     fromDef: (name, rawDef) ->
         {:color, :weight} = rawDef
         return PolyDef name, color, weight, rawDef
-
-    transform: (name, transFunc) =>
-        newBlocks = {}
+    
+    toMatrix: =>
+        matrix = {}
+        for y=1,@max.y+1
+            matrix[y] = {}
+            for x=1,@max.x+1
+                matrix[y][x] = false
         for block in *@blocks
-            table.insert newBlocks, transFunc(block)
+            matrix[block[2]+1][block[1]+1] = true
+        return matrix
+    
+    rotateMatrix: (m) ->
+        matrix = {}
+        for y=1,#m[1]
+            matrix[y] = {}
+            for x=1,#m
+                matrix[y][x] = false
+        for i = 1,#m
+            for j = 1,#m[1]
+                matrix[j][#m-i+1] = m[i][j]
+        return matrix
+    
+    deriveFromMatrix: (name, matrix) =>
+        newBlocks = {}
+        for y=1,#matrix
+            for x=1,#matrix[y]
+                if matrix[y][x]
+                    table.insert newBlocks, {x-1, y-1}
+        return PolyDef name, @color, @weight, newBlocks
+
+    reflect: (name) =>
+        newBlocks = {}
+        for bl in *@blocks
+            table.insert newBlocks, {-bl[1] + @max.x, bl[2]}
         return PolyDef name, @color, @weight, newBlocks
     
-    swapAxes: (co) => {co[2], co[1]}
-    reflectPointV: (co) => {-co[1] + @max.x, co[2]}
-    reflectPointH: (co) => {co[1], -co[2] + @max.y}
-    rotatePoint90: (co) => {-co[2] + @max.x + 1, co[1]}
-    rotatePoint180: (co) => @reflectPointH @reflectPointV co
-    rotatePoint270: (co) => @rotatePoint90 @reflectPointH @reflectPointV co
+    rotate: (name, num) =>
+        matrix = @toMatrix!
+        for i=1,num
+            matrix = PolyDef.rotateMatrix matrix
+        return @deriveFromMatrix name, matrix
 
-    swap: (name) => @transform name, @\swapAxes
-    reflect: (name) => @transform name, @\reflectPointV
-    rotate90: (name) => @transform name, @\rotatePoint90
-    rotate180: (name) => @transform name, @\rotatePoint180
-    rotate270: (name) => @transform name, @\rotatePoint270
+    rotate90: (name) => @rotate name, 1
+    rotate180: (name) => @rotate name, 2
+    rotate270: (name) => @rotate name, 3
 
 
 class PolyDefCollection
@@ -46,10 +72,7 @@ class PolyDefCollection
                 @add pdef
                 t = def.transform
                 if string.find(t, 'rotate')
-                    if string.find(t, 'once')
-                        @add pdef\swap name .. '_90'
-                    else
-                        @add pdef\rotate90 name .. '_90'
+                    @add pdef\rotate90 name .. '_90'
                     if string.find(t, 'all')
                         @add pdef\rotate180 name .. '_180'
                         @add pdef\rotate270 name .. '_270'
@@ -57,10 +80,7 @@ class PolyDefCollection
                     reflected = pdef\reflect name .. '_M'
                     @add reflected
                     if string.find(t, 'rotate')
-                        if string.find(t, 'once')
-                            @add reflected\swap name .. '_M90'
-                        else
-                            @add reflected\rotate90 name .. '_M90'
+                        @add reflected\rotate90 name .. '_M90'
                         if string.find(t, 'all')
                             @add reflected\rotate180 name .. '_M180'
                             @add reflected\rotate270 name .. '_M270'
